@@ -1,5 +1,5 @@
 main:
-	gcc main.c -o bin/main vector.c nvector.c
+	gcc main.c -o bin/main vector.c blade.c
 
 clean:
 	-rm *.o $(objects)

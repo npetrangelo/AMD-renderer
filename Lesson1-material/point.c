@@ -75,12 +75,10 @@ void draw_point( float x, float y )
  */
 void my_drawing( void )
 {
-    float x = random_float(-200.0, 200.0);
-    float y = random_float(-200.0, 200.0);
-
-
-    set_color( 0, 1, 0, 0 );
-    draw_point( x, y );
+    for (int i = 0; i < 100; i++) {
+        set_color(random_float(0.0, 1.0), random_float(0.0, 1.0), random_float(0.0, 1.0), 0.0);
+        draw_point(random_float(-400.0, 400.0), random_float(-400.0, 400.0));
+    }
 }
 
 /*************************************************************************/

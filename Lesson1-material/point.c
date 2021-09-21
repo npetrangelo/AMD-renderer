@@ -75,8 +75,8 @@ void draw_point( float x, float y )
  */
 void my_drawing( void )
 {
-    float x = 200;
-    float y = 100;
+    float x = random_float(-200.0, 200.0);
+    float y = random_float(-200.0, 200.0);
 
 
     set_color( 0, 1, 0, 0 );

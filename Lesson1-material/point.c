@@ -70,6 +70,25 @@ float randomGL( int m )
     return rand()%m;
 }
 
+double sign( double a )
+{
+    if ( a < 0.0 ) {
+        return( -1.0 );
+    }
+    if( a > 0.0 ) {
+        return( 1.0 );
+    }
+    return( 0.0 );
+}
+
+double dabs( double a )
+{
+    if( a < 0.0 ) {
+        return( -a );
+    }
+    return( a );
+}
+
 /*
  * set_color()
  */

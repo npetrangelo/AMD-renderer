@@ -153,6 +153,24 @@ void horizontal_gradient( void )
     }
 }
 
+void sierpinski( void )
+{
+    set_color(1.0, 1.0, 1.0, 0.0);
+    int xs[3] = {random_int(-400, 400), random_int(-400, 400), random_int(-400, 400)};
+    int ys[3] = {random_int(-400, 400), random_int(-400, 400), random_int(-400, 400)};
+
+    int index = randomGL(3);
+    int x = xs[index];
+    int y = ys[index];
+    draw_point(x, y);
+    for (int i = 0; i < 100000; i++) {
+        int index = randomGL(3);
+        x = (x + xs[index])/2;
+        y = (y + ys[index])/2;
+        draw_point(x, y);
+    }
+}
+
 /*************************************************************************/
 /* GLUT functions                                                        */
 /*************************************************************************/
@@ -175,7 +193,7 @@ void display(void)
      */
     glClear(GL_COLOR_BUFFER_BIT );
 
-    horizontal_gradient();
+    sierpinski();
     
     /*
      * show results

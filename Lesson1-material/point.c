@@ -55,6 +55,22 @@ float random_float( float low, float high )
 }
 
 /*
+ * random_int()
+ */
+float random_int( int low, int high )
+{
+    return( (int)(low + (rand()/(float)RAND_MAX)*(high+1 - low)) );
+}
+
+/*
+ * randomGL()
+ */
+float randomGL( int m )
+{
+    return rand()%m;
+}
+
+/*
  * set_color()
  */
 void set_color( float r, float g, float b, float a )

@@ -190,6 +190,48 @@ void sierpinski( void )
     }
 }
 
+void hopalong( void )
+{
+    double x        = 0;
+    double y        = 0;
+    double A        = random_float(-20,20);
+    double B        = (random_float(-1,1));
+    double C        = (random_float(-1,1));
+    double scale    = 10.0;
+    double newx;
+    double newy;
+    float  r, g, b;
+    
+    /*
+     * draw hopalog orbit discovered by Barry Martin
+     *
+     * interesting values to try:
+     *
+     *        a = 73, b = 2.6, c = 25
+     *        a = -200, b = .1, c = -80
+     *        a = .4, b = 1, c = 0 (try a scale of 100 
+     *        a = -3.14, b = .3, c = .3
+     */
+    for( int i = 0; i < 20000; i++ )
+    {
+        newx    = y - sign(x) * dabs( B * x - C );
+        newy    = A - x;
+        x       = newx;
+        y       = newy;
+        
+        draw_point( scale * x, scale * y );
+        
+        if( !(i % 1000) )
+        {
+            r = random_float( 0, 1);
+            g = random_float( 0, 1);
+            b = random_float( 0, 1);
+            
+            set_color( r, g, b, 1.0 );
+        }
+    }
+}
+
 /*************************************************************************/
 /* GLUT functions                                                        */
 /*************************************************************************/
@@ -212,7 +254,7 @@ void display(void)
      */
     glClear(GL_COLOR_BUFFER_BIT );
 
-    sierpinski();
+    hopalong();
     
     /*
      * show results

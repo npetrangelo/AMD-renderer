@@ -10,7 +10,7 @@ int main ( void ) {
     if (!v) {
         printf("Addition error\n");
     } else {
-        printf("len=%d, {%f, %f, %f}\n", v->len, v->arr[0], v->arr[1], v->arr[2]);
+        printf("sum len=%d, {%f, %f, %f}\n", v->len, v->arr[0], v->arr[1], v->arr[2]);
     }
 
     nvector* nv = bivector(v1, v2);
@@ -21,5 +21,11 @@ int main ( void ) {
         printf("{%f, %f, %f}, {%f, %f, %f}\n",
             nv->arr[0]->arr[0], nv->arr[0]->arr[1], nv->arr[0]->arr[2],
             nv->arr[1]->arr[0], nv->arr[1]->arr[1], nv->arr[1]->arr[2]);
+    }
+    double* dot = vdot(v1,v1);
+    if (!dot) {
+        printf("Dot product error\n");
+    } else {
+        printf("Dot product %f\n", *dot);
     }
 }

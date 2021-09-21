@@ -75,9 +75,22 @@ void draw_point( float x, float y )
  */
 void my_drawing( void )
 {
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 1000; i++) {
         set_color(random_float(0.0, 1.0), random_float(0.0, 1.0), random_float(0.0, 1.0), 0.0);
         draw_point(random_float(-400.0, 400.0), random_float(-400.0, 400.0));
+    }
+}
+
+void points_in_circle( void )
+{
+    float r = 200;
+
+    for (int i = 0; i < 1000; i++) {
+        set_color(random_float(0.0, 1.0), random_float(0.0, 1.0), random_float(0.0, 1.0), 0.0);
+        int x = random_float(-200.0, 200.0);
+        int y = random_float(-200.0, 200.0);
+        if (x*x + y*y < r*r)
+            draw_point(x, y);
     }
 }
 
@@ -103,7 +116,7 @@ void display(void)
      */
     glClear(GL_COLOR_BUFFER_BIT );
 
-    my_drawing();
+    points_in_circle();
     
     /*
      * show results

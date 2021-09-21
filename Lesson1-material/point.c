@@ -94,11 +94,21 @@ void points_in_circle( void )
     }
 }
 
-void fill_window( void )
+void fill_window_solid( void )
 {
     set_color(random_float(0.0, 1.0), random_float(0.0, 1.0), random_float(0.0, 1.0), 0.0);
     for (int x = -400; x <= 400; x++) {
         for (int y = -400; y <= 400; y++) {
+            draw_point(x, y);
+        }
+    }
+}
+
+void fill_window_static( void )
+{
+    for (int x = -400; x <= 400; x++) {
+        for (int y = -400; y <= 400; y++) {
+            set_color(random_float(0.0, 1.0), random_float(0.0, 1.0), random_float(0.0, 1.0), 0.0);
             draw_point(x, y);
         }
     }
@@ -126,7 +136,7 @@ void display(void)
      */
     glClear(GL_COLOR_BUFFER_BIT );
 
-    fill_window();
+    fill_window_static();
     
     /*
      * show results

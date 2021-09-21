@@ -123,6 +123,20 @@ void fill_window_static( void )
     }
 }
 
+void horizontal_gradient( void )
+{
+    float r1 = random_float(0.0, 1.0), g1 = random_float(0.0, 1.0), b1 = random_float(0.0, 1.0);
+    float r2 = random_float(0.0, 1.0), g2 = random_float(0.0, 1.0), b2 = random_float(0.0, 1.0);
+
+    for (int x = -400; x <= 400; x++) {
+        float t = (x+400)/800.0;
+        set_color(lerp(r1, r2, t), lerp(g1, g2, t), lerp(b1, b2, t), 0.0);
+        for (int y = -400; y <= 400; y++) {
+            draw_point(x, y);
+        }
+    }
+}
+
 /*************************************************************************/
 /* GLUT functions                                                        */
 /*************************************************************************/
@@ -145,7 +159,7 @@ void display(void)
      */
     glClear(GL_COLOR_BUFFER_BIT );
 
-    fill_window_static();
+    horizontal_gradient();
     
     /*
      * show results

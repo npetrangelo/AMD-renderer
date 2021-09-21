@@ -34,7 +34,8 @@ vector* vadd(vector* v1, vector* v2) {
         printf("Cannot add: Incompatible vector lengths %d != %d\n", v1->len, v2->len);
         return NULL;
     }
-    vector *v = malloc(sizeof(short) + 4*sizeof(double));
+    vector *v = malloc(sizeof(*v1));
+    v->len = v1->len;
     for (int i = 0; i<v1->len; i++) {
         v->arr[i] = v1->arr[i] + v2->arr[i];
     }

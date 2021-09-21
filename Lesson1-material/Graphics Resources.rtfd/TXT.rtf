@@ -1,0 +1,592 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf500
+\cocoascreenfonts1{\fonttbl\f0\fmodern\fcharset0 Courier;\f1\fswiss\fcharset0 Helvetica;\f2\fswiss\fcharset0 Helvetica-Oblique;
+\f3\fnil\fcharset0 Monaco;\f4\fnil\fcharset0 Menlo-Bold;\f5\fnil\fcharset0 Menlo-Regular;
+\f6\fnil\fcharset0 Menlo-Italic;\f7\fnil\fcharset0 Verdana;\f8\froman\fcharset0 Times-Roman;
+\f9\fnil\fcharset0 Verdana-Italic;}
+{\colortbl;\red255\green255\blue255;\red255\green255\blue255;\red20\green20\blue20;\red255\green255\blue255;
+\red159\green159\blue159;\red180\green0\blue98;\red255\green255\blue255;\red0\green0\blue0;\red0\green11\blue255;
+\red86\green96\blue107;\red12\green100\blue192;\red72\green80\blue93;\red34\green92\blue173;\red15\green112\blue1;
+\red0\green0\blue120;\red107\green0\blue109;\red83\green101\blue121;\red155\green35\blue147;\red28\green0\blue207;
+\red0\green0\blue0;}
+{\*\expandedcolortbl;;\csgray\c100000;\cssrgb\c10196\c10196\c10196;\cssrgb\c100000\c100000\c100000;
+\cssrgb\c68627\c68627\c68627;\csgenericrgb\c70588\c0\c38431\c80000;\csgenericrgb\c100000\c100000\c100000;\csgenericrgb\c0\c0\c0;\csgenericrgb\c0\c4314\c100000;
+\csgenericrgb\c33600\c37617\c42000;\cssrgb\c0\c47843\c80000;\cssrgb\c35294\c38824\c43922;\cssrgb\c16863\c44706\c73333;\cssrgb\c0\c50196\c0;
+\cssrgb\c0\c0\c54510;\cssrgb\c50196\c0\c50196;\csgenericrgb\c32401\c39745\c47507;\csgenericrgb\c60759\c13753\c57628;\csgenericrgb\c11000\c0\c81000;
+\cssrgb\c0\c0\c0;}
+\margl1440\margr1440\vieww38180\viewh21740\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs28 \cf0 \cb2 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\ul 1) AK Dewdney Hopalong Fractal\ulnone \
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1 \cf3 \cb4 \expnd0\expndtw0\kerning0
+All this fiddling around with the Lorenz attractor has made me try to think of other simple, easy graphics hacks that I could make. I recalled that A.K. Dewdney had some simple graphics hacks in one of his 
+\f2\i Computer Recreations
+\f1\i0  column back in the 1980s. It turns out that 
+\f2\i Wallpaper for the mind
+\f1\i0  was published back the September 1986 issue of Scientific American, and was reprinted in Dewdney\'92s compendium 
+\f2\i The Armchair Universe
+\f1\i0 . I had a quick look, and wrote the following implementation of the HOPALONG program first\'85 discovered? written? by Barry Martin. The program initializes X and Y to zero, and then repeatedly applies a pair of functions to the existing X, Y to generate new values. The program here just prints the values.\
+\cb1 \
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth924\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl0 \clpadr0 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth11075\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl0 \clpadr0 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f3 \cf5 \cb4 \cell 
+\pard\intbl\itap1\tx741\pardeftab741\pardirnatural\partightenfactor0
+
+\f4\b\fs30 \cf6 \cb7 \kerning1\expnd0\expndtw0 double
+\f5\b0 \cf8  sign( 
+\f4\b \cf6 double
+\f5\b0 \cf8  a )\
+\{\
+    
+\f4\b \cf6 if
+\f5\b0 \cf8 ( a < \cf9 0.0\cf8  )\
+    \{\
+        
+\f4\b \cf6 return
+\f5\b0 \cf8 ( -\cf9 1.0\cf8  );\
+    \}\
+    
+\f4\b \cf6 else
+\f5\b0 \cf8 \
+    \{\
+        
+\f4\b \cf6 if
+\f5\b0 \cf8 ( a > \cf9 0.0\cf8  )\
+        \{\
+            
+\f4\b \cf6 return
+\f5\b0 \cf8 ( \cf9 1.0\cf8  );\
+        \}\
+        
+\f4\b \cf6 else
+\f5\b0 \cf8 \
+        \{\
+            
+\f4\b \cf6 return
+\f5\b0 \cf8 ( \cf9 0.0\cf8  );\
+        \}\
+    \}\
+\}\
+\
+
+\f4\b \cf6 double
+\f5\b0 \cf8  dabs( 
+\f4\b \cf6 double
+\f5\b0 \cf8  a )\
+\{\
+    
+\f4\b \cf6 if
+\f5\b0 \cf8 ( a < \cf9 0.0\cf8  )\
+    \{\
+        
+\f4\b \cf6 return
+\f5\b0 \cf8 ( -a );\
+    \}\
+    
+\f4\b \cf6 else
+\f5\b0 \cf8 \
+    \{\
+        
+\f4\b \cf6 return
+\f5\b0 \cf8 ( a );\
+    \}\
+\}\
+\
+
+\f4\b \cf6 void
+\f5\b0 \cf8  draw_hopalong( 
+\f4\b \cf6 void
+\f5\b0 \cf8  )\
+\{\
+    
+\f4\b \cf6 double
+\f5\b0 \cf8  x        = \cf9 0\cf8 ;\
+    
+\f4\b \cf6 double
+\f5\b0 \cf8  y        = \cf9 0\cf8 ;\
+    
+\f4\b \cf6 double
+\f5\b0 \cf8  a        = random_float(-\cf9 20\cf8 ,\cf9 20\cf8 );\
+    
+\f4\b \cf6 double
+\f5\b0 \cf8  b        = (random_float(-\cf9 1\cf8 ,\cf9 1\cf8 ));\
+    
+\f4\b \cf6 double
+\f5\b0 \cf8  c        = (random_float(-\cf9 1\cf8 ,\cf9 1\cf8 ));\
+    
+\f4\b \cf6 double
+\f5\b0 \cf8  scale    = \cf9 10.0\cf8 ;\
+    
+\f4\b \cf6 double
+\f5\b0 \cf8  newx;\
+    
+\f4\b \cf6 double
+\f5\b0 \cf8  newy;\
+    
+\f4\b \cf6 float
+\f5\b0 \cf8   r, g, b;\
+    \
+    
+\f6\i \cf10 /*
+\f5\i0 \cf8 \
+
+\f6\i \cf10      * draw hopalog orbit discovered by Barry Martin
+\f5\i0 \cf8 \
+
+\f6\i \cf10      *
+\f5\i0 \cf8 \
+
+\f6\i \cf10      * interesting values to try:
+\f5\i0 \cf8 \
+
+\f6\i \cf10      *
+\f5\i0 \cf8 \
+
+\f6\i \cf10      *        a = 73, b = 2.6, c = 25
+\f5\i0 \cf8 \
+
+\f6\i \cf10      *        a = -200, b = .1, c = -80
+\f5\i0 \cf8 \
+
+\f6\i \cf10      *        a = .4, b = 1, c = 0 (try a scale of 100 \
+     *        a = -3.14, b = .3, c = .3
+\f5\i0 \cf8 \
+
+\f6\i \cf10      */
+\f5\i0 \cf8 \
+    
+\f4\b \cf6 for
+\f5\b0 \cf8 ( 
+\f4\b \cf6 int
+\f5\b0 \cf8  i = \cf9 0\cf8 ; i < \cf9 20000\cf8 ; i++ )\
+    \{\
+        newx    = y - sign(x) * dabs( b * x - c );\
+        newy    = a - x;\
+        x       = newx;\
+        y       = newy;\
+        \
+        draw_point( scale * x, scale * y );\
+        \
+        
+\f4\b \cf6 if
+\f5\b0 \cf8 ( !(i % \cf9 1000\cf8 ) )\
+        \{\
+            r = random_float( \cf9 0\cf8 , \cf9 1\cf8 );\
+            g = random_float( \cf9 0\cf8 , \cf9 1\cf8 );\
+            b = random_float( \cf9 0\cf8 , \cf9 1\cf8 );\
+            \
+            glColor4f( r, g, b, \cf9 1.0\cf8  );\
+        \}\
+    \}\
+\}\
+\
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f3\fs28 \cf3 \cb4 \expnd0\expndtw0\kerning0
+\cell \lastrow\row
+\pard\pardeftab720\partightenfactor0
+
+\f1 \cf3 Depending on the value of a, b, and c, a different set of points is produced. I\'92ve left several \'93interesting\'94 values as comments in the code. The set that remains uncommented is actually among the more interesting. It generates all sorts of interesting details. To visualize these points, I found it convenient to use gnuplot. Zooming into a fairly small region, you can see this wonderfully vascular like pattern evolve:\cb1 \
+\pard\pardeftab720\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "https://brainwagon.org/wp-content/uploads/2011/03/hopalong.png"}}{\fldrslt \cf11 {{\NeXTGraphic hopalong.png \width20480 \height20480 \noorient \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}}}\pard\pardeftab720\partightenfactor0
+\cf11 \
+\pard\pardeftab720\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "https://brainwagon.org/wp-content/uploads/2011/03/hopalong.png"}}{\fldrslt \cf11 \
+}}\pard\pardeftab720\partightenfactor0
+\cf3 \cb4 I remember implementing this on my old Atari 400 back then. But I probably didn\'92t really appreciate how it worked. Now, I recognize that this iteration is some kind of {\field{\*\fldinst{HYPERLINK "http://en.wikipedia.org/wiki/Iterated_function_system"}}{\fldrslt \cf11 iterated function system}}, and that you might reasonably expect it to develop these kind of fractal patterns. It seems likely for convergence that the variable b should have absolute value less than 1, but a and c can (I think) be more or less chosen at any scale you desire. The sqrt implements some nonlinearity, which accounts for the many curved features that are visible.\cb1 \
+\cb4 This program has all sorts of fun tweaks. It always begins by initializing x and y to zero, but if you try different starting points, you get different orbits. You could try coloring the dots by slowly changing the way they are colored, or by coloring all points on the same orbit the same color. I removed the sqrt, and still got some interesting patterns. I\'92ve also thought of producing some animations by slowly varing some of the parameters to see how the resulting pattern evolves. All sorts of good stuff.\
+\pard\pardeftab720\partightenfactor0
+
+\f0 \cf0 \cb2 \kerning1\expnd0\expndtw0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 https://brainwagon.org/2011/03/24/hopalong-from-dewdneys-armchair-universe/\
+\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+\ul 2) Lorenz Attractor\ulnone \
+\
+\pard\pardeftab720\qj\partightenfactor0
+
+\f7 \cf12 \cb4 \expnd0\expndtw0\kerning0
+The Lorenz Attractor is a system of differential equations first studied by Ed N, Lorenz, the equations of which were derived from simple models of weather phenomena. The beauty of the Lorenz Attractor lies both in the mathematics and in the visualization of the model. Mathematically, the Lorenz Attractor is simple yet results in chaotic and emergent behavior. Visually, when the values given by the equations are plotted in two or three dimensional space the behavior is reminiscent of an orbit of an object around two central origins, when looked at from the appropriate dimension the pattern appears similar to a figure eight (see below).\cb1 \
+\cb4 There are three Lorenz equations that comprise the Lorenz Attractor, each of which can be though of as the x, y, or z component of a given three dimensional location in space:\cb1 \
+\pard\pardeftab720\qj\partightenfactor0
+\cf12 {{\NeXTGraphic lorenz-attractor-equations.png \width4080 \height3320 \noorient \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\pard\pardeftab720\qj\partightenfactor0
+\cf12 \
+\cb4 The Lorenz Equations.\cb1 \
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth3200\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl0 \clpadr0 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\qc\partightenfactor0
+
+\f8 \cf0 \
+\pard\intbl\itap1\pardeftab720\qc\partightenfactor0
+\cf0 \cb4 \
+\pard\intbl\itap1\pardeftab720\qc\partightenfactor0
+\cf0 \cb1 \cell \lastrow\row
+\pard\pardeftab720\qc\partightenfactor0
+\cf0 \
+\pard\pardeftab720\qj\partightenfactor0
+
+\f7 \cf12 \cb4 Each of these equations can be read as the 'change in x,y, or z with respect to time'. Thus, each equation is used to calculate how much a given point is changed relative to the previous point, the change dependent upon the elapsed time.\cb1 \
+\cb4 The values a, b, c in the Lorenz equations are constants (for the Lorenz Attractor, a = 10, b = 28, and c = 8/3). These constants, as well as the above equations, can be altered to generate different results. For instance, a value of a = 1 results in a spiral with a single attractor (converging on this attractor), or a value of c = 20 results in a similar pattern given by c = 28, but with more compact orbits. Alternatively, other mathematical equations result in other types of attractors, such as the {\field{\*\fldinst{HYPERLINK "http://en.wikipedia.org/wiki/H%C3%A9non_map"}}{\fldrslt \cf13 Henon Map}} or the {\field{\*\fldinst{HYPERLINK "http://en.wikipedia.org/wiki/R%C3%B6ssler_attractor"}}{\fldrslt \cf13 Rossler Attractor}}.\cb1 \
+\cb4 The implementation of the Lorenz Attractor can be quite simplistic, as shown in the C source code below:
+\f0 \
+\pard\pardeftab720\qj\partightenfactor0
+\cf14 /*\
+\
+* Basic Lorenz Attractor code \
+\
+*/\cf12 \
+\
+\pard\pardeftab720\qj\partightenfactor0
+\cf15 double\cf12  x = 0.1; \
+\
+\cf15 double\cf12  y = 0;\
+\
+\cf15 double\cf12  z = 0; \
+\
+\cf15 double\cf12  a = 10.0;\
+\
+\cf15 double\cf12  b = 28.0;\
+\
+\cf15 double\cf12  c = 8.0 / 3.0;\
+\
+\cf15 double\cf12  t = 0.01; \
+\
+int lorenzIterationCount = 1000;\
+\
+int i;\
+\
+\pard\pardeftab720\qj\partightenfactor0
+\cf14 //Iterate and update x,y and z locations\cf12 \
+\
+\cf14 //based upon the Lorenz equations\cf12 \
+\
+\pard\pardeftab720\qj\partightenfactor0
+\cf16 for\cf12  ( i = 0; i < lorenzIterationCount; i++ )\{\
+\
+    \cf15 double\cf12  xt = x + t * a * (y - x);\
+\
+    \cf15 double\cf12  yt = y + t * (x * (b - z) - y);\
+\
+    \cf15 double\cf12  zt = z + t * (x * y - c * z);\
+\
+    x = xt;\
+\
+    y = yt;\
+\
+    z = zt;\
+\
+\} \
+\pard\pardeftab720\partightenfactor0
+
+\f8 \cf0 \cb1 \
+\pard\pardeftab720\qj\partightenfactor0
+
+\f7 \cf12 \cb4 The code above simply loops 
+\f9\i lorenzIterationCount
+\f7\i0  times, each iteration doing the math to generate the next x,y,z values (the attractor is seeded with values x = 0.1, y = 0, and z = 0).\
+Note that time 
+\f9\i t
+\f7\i0  is programmed in as 0.01, a relatively arbitrary (and seemingly unit-less) value that is multiplied by the differential equation to generate the change - or delta - in the x,y,z values.\
+\pard\pardeftab720\qj\partightenfactor0
+
+\f0 \cf0 \cb2 \kerning1\expnd0\expndtw0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 https://www.algosome.com/articles/lorenz-attractor-programming-code.html\
+\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \ul \ulc0 3) Bifurcation plot\ulnone \
+\
+\pard\tx692\pardeftab692\pardirnatural\partightenfactor0
+
+\f4\b \cf6 \cb7 void
+\f5\b0 \cf8  bifurcate( 
+\f4\b \cf6 void
+\f5\b0 \cf8  )\
+\{\
+	
+\f4\b \cf6 double
+\f5\b0 \cf8 	x;\
+	
+\f4\b \cf6 double
+\f5\b0 \cf8 	y	= \cf9 0\cf8 ;	\
+	
+\f4\b \cf6 double
+\f5\b0 \cf8 	r	= \cf9 2\cf8 ;\
+	
+\f4\b \cf6 double
+\f5\b0 \cf8 	inc	= \cf9 0.004\cf8 ;\
+	\
+	
+\f6\i \cf10 /*
+\f5\i0 \cf8 \
+
+\f6\i \cf10 	 *	calculate bifurcation plot
+\f5\i0 \cf8 \
+
+\f6\i \cf10 	 */
+\f5\i0 \cf8 			\
+	
+\f4\b \cf6 for
+\f5\b0 \cf8 ( 
+\f4\b \cf6 int
+\f5\b0 \cf8  i = \cf9 0\cf8 ; i < \cf9 800\cf8 ; i++ )\
+	\{\
+		x = \cf9 0.5\cf8 ;\
+		r += inc;\
+		\
+		
+\f4\b \cf6 for
+\f5\b0 \cf8 ( 
+\f4\b \cf6 int
+\f5\b0 \cf8  j = \cf9 0\cf8 ; j < \cf9 200\cf8 ; j++ )\
+		\{\
+			x = r * x * (\cf9 1\cf8  - x);\
+			draw_point( x*\cf9 800\cf8  - \cf9 400\cf8 , y - \cf9 400\cf8  );\
+		\}	\
+	\
+		y = y + \cf9 1\cf8 ;\
+	\}\
+\}\
+\pard\tx593\pardeftab593\pardirnatural\partightenfactor0
+\cf8 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0 \cf0 \cb2 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\ul 4) Mandelbrot set\ulnone \
+\pard\tx593\pardeftab593\pardirnatural\partightenfactor0
+
+\f5 \cf8 \cb7 \
+\pard\tx593\pardeftab593\pardirnatural\partightenfactor0
+
+\f6\i \cf17 /*
+\f5\i0 \cf8 \
+
+\f6\i \cf17  * Function: draw()
+\f5\i0 \cf8 \
+
+\f6\i \cf17  */
+\f5\i0 \cf8 \
+
+\f4\b \cf18 void
+\f5\b0 \cf8  draw( 
+\f4\b \cf18 void
+\f5\b0 \cf8  )\
+\{\
+	mandelbrot( -\cf19 2\cf8 , \cf19 1.5\cf8 , \cf19 3\cf8  , \cf19 3\cf8  );   
+\f6\i \cf17 // whole Mandelbrot set
+\f5\i0 \cf8 \
+	
+\f6\i \cf17 //mandelbrot( -2 + 1.5/2, 1.5 - 1.5/2.0, 1.5/2, 1.5/2 );
+\f5\i0 \cf8 \
+	
+\f6\i \cf17 //mandelbrot( -1.0, 0, 0.35 , 0.25 );
+\f5\i0 \cf8 \
+	
+\f6\i \cf17 //mandelbrot( -1.30, -0.25, 0.35 , 0.25 );
+\f5\i0 \cf8 \
+	
+\f6\i \cf17 //mandelbrot( -1.30, -0.25, 0.35/2 , 0.25/2 );
+\f5\i0 \cf8 \
+\}\
+\
+\pard\tx692\pardeftab692\pardirnatural\partightenfactor0
+
+\f6\i \cf10 /*
+\f5\i0 \cf8 \
+
+\f6\i \cf10  * Function: mandelbrot()
+\f5\i0 \cf8 \
+
+\f6\i \cf10  */
+\f5\i0 \cf8 \
+
+\f4\b \cf6 void
+\f5\b0 \cf8  mandelbrot( 
+\f4\b \cf6 float
+\f5\b0 \cf8  acorner, 
+\f4\b \cf6 float
+\f5\b0 \cf8  bcorner, 
+\f4\b \cf6 float
+\f5\b0 \cf8  xside, 
+\f4\b \cf6 float
+\f5\b0 \cf8  yside )\
+\{\
+	
+\f4\b \cf6 float
+\f5\b0 \cf8  a, b;\
+	
+\f4\b \cf6 float
+\f5\b0 \cf8  x, y, next_x, next_y;\
+	
+\f4\b \cf6 float
+\f5\b0 \cf8  shade;\
+	
+\f4\b \cf6 float
+\f5\b0 \cf8  xinc = xside/\cf9 800\cf8 ;\
+	
+\f4\b \cf6 float
+\f5\b0 \cf8  yinc = yside/\cf9 800\cf8 ;\
+	
+\f4\b \cf6 int
+\f5\b0 \cf8  count, j, k;\
+	\
+	a = acorner;\
+	
+\f4\b \cf6 for
+\f5\b0 \cf8 ( j = -\cf9 400\cf8 ; j < \cf9 400\cf8 ; j++ )\
+	\{\
+		b = bcorner;\
+		
+\f4\b \cf6 for
+\f5\b0 \cf8 ( k = -\cf9 400\cf8 ; k < \cf9 400\cf8 ; k++ )\
+		\{\
+			x = \cf9 0.0\cf8 ;\
+			y = \cf9 0.0\cf8 ;\
+			count = \cf9 0\cf8 ;\
+			\
+			
+\f4\b \cf6 while
+\f5\b0 \cf8 (count < \cf9 50\cf8  && (x * x + y * y) < \cf9 4\cf8 )\
+			\{\
+				next_x = x * x - y * y + a;\
+				next_y = \cf9 2\cf8  * x * y + b;\
+				\
+				x = next_x;\
+				y = next_y;\
+				\
+				count = count + \cf9 1\cf8 ;\
+			\}\
+			\
+			shade = count/\cf9 50.0\cf8 ;\
+		   glColor4f(shade, shade, shade, \cf9 1.0\cf8 );\
+			draw_point(j+\cf9 0.5\cf8 , k+\cf9 0.5\cf8 );\
+			\
+			b -= yinc;\
+		\}\
+		a +=  xinc;\
+	\}\
+\}\
+\pard\tx593\pardeftab593\pardirnatural\partightenfactor0
+\cf8 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0 \cf0 \cb2 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\ul 4) Julia set\ulnone \
+\pard\tx593\pardeftab593\pardirnatural\partightenfactor0
+
+\f5 \cf8 \cb7 \
+\pard\tx593\pardeftab593\pardirnatural\partightenfactor0
+
+\f6\i \cf17 /*
+\f5\i0 \cf8 \
+
+\f6\i \cf17  * Function: draw()
+\f5\i0 \cf8 \
+
+\f6\i \cf17  */
+\f5\i0 \cf8 \
+
+\f4\b \cf18 void
+\f5\b0 \cf8  draw( 
+\f4\b \cf18 void
+\f5\b0 \cf8  )\
+\{\
+	
+\f6\i \cf20 julia\cf17 ( -1.5, 1.8, 1.14, 0.25, 3, 3.6 );
+\f5\i0 \cf8 \
+\}\
+\
+\pard\tx692\pardeftab692\pardirnatural\partightenfactor0
+
+\f6\i \cf10 /*
+\f5\i0 \cf8 \
+
+\f6\i \cf10  * Function: julia()
+\f5\i0 \cf8 \
+
+\f6\i \cf10  */
+\f5\i0 \cf8 \
+
+\f4\b \cf6 void
+\f5\b0 \cf8  julia( 
+\f4\b \cf6 float
+\f5\b0 \cf8  acorner, 
+\f4\b \cf6 float
+\f5\b0 \cf8  bcorner, 
+\f4\b \cf6 float
+\f5\b0 \cf8  a_constant, 
+\f4\b \cf6 float
+\f5\b0 \cf8  b_constant, 
+\f4\b \cf6 float
+\f5\b0 \cf8  xside, 
+\f4\b \cf6 float
+\f5\b0 \cf8  yside )\
+\{\
+	
+\f4\b \cf6 float
+\f5\b0 \cf8  a, b;\
+	
+\f4\b \cf6 float
+\f5\b0 \cf8  x, y, next_x, next_y;\
+	
+\f4\b \cf6 float
+\f5\b0 \cf8  shade;\
+	
+\f4\b \cf6 float
+\f5\b0 \cf8  xinc = xside/\cf9 800\cf8 ;\
+	
+\f4\b \cf6 float
+\f5\b0 \cf8  yinc = yside/\cf9 800\cf8 ;\
+	
+\f4\b \cf6 int
+\f5\b0 \cf8  count, j, k;\
+	\
+	b = bcorner;\
+	
+\f4\b \cf6 for
+\f5\b0 \cf8 (k = -\cf9 400\cf8 ; k < \cf9 400\cf8 ; k++)\
+	\{\
+		a = acorner;\
+		
+\f4\b \cf6 for
+\f5\b0 \cf8 (j = -\cf9 400\cf8 ; j < \cf9 400\cf8 ; j++)\
+		\{	\
+			x = a;\
+			y = b;\
+			count = \cf9 0\cf8 ;\
+			
+\f4\b \cf6 while
+\f5\b0 \cf8 (count < \cf9 50\cf8  && (x * x + y * y) < \cf9 4\cf8 )\
+			\{\
+				next_x = x * x - y * y + a_constant;\
+				next_y = \cf9 2\cf8  * x * y + b_constant;\
+				\
+				x = next_x;\
+				y = next_y;\
+				\
+				count = count + \cf9 1\cf8 ;\
+			\}\
+			\
+			shade = count/\cf9 50.0\cf8 ;\
+		   glColor4f(shade, shade, shade, \cf9 1.0\cf8 );\
+			draw_point(j+\cf9 0.5\cf8 , k+\cf9 0.5\cf8 );\
+			\
+			a += xinc;\
+		\}\
+		b -= yinc;\
+	\}\
+\}\
+}

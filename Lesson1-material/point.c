@@ -256,6 +256,55 @@ void bifurcate( void )
 	}
 }
 
+void mandelbrot( float acorner, float bcorner, float xside, float yside )
+{
+	float a, b;
+	float x, y, next_x, next_y;
+	float shade;
+	float xinc = xside/800;
+	float yinc = yside/800;
+	int count, j, k;
+	
+	a = acorner;
+	for( j = -400; j < 400; j++ )
+	{
+		b = bcorner;
+		for( k = -400; k < 400; k++ )
+		{
+			x = 0.0;
+			y = 0.0;
+			count = 0;
+			
+			while(count < 50 && (x * x + y * y) < 4)
+			{
+				next_x = x * x - y * y + a;
+				next_y = 2 * x * y + b;
+				
+				x = next_x;
+				y = next_y;
+				
+				count = count + 1;
+			}
+			
+			shade = count/50.0;
+		    set_color(shade, shade, shade, 1.0);
+			draw_point(j+0.5, k+0.5);
+			
+			b -= yinc;
+		}
+		a +=  xinc;
+	}
+}
+
+void draw_mandelbrot( void )
+{
+	mandelbrot( -2, 1.5, 3 , 3 );   // whole Mandelbrot set
+	//mandelbrot( -2 + 1.5/2, 1.5 - 1.5/2.0, 1.5/2, 1.5/2 );
+	//mandelbrot( -1.0, 0, 0.35 , 0.25 );
+	//mandelbrot( -1.30, -0.25, 0.35 , 0.25 );
+	//mandelbrot( -1.30, -0.25, 0.35/2 , 0.25/2 );
+}
+
 /*************************************************************************/
 /* GLUT functions                                                        */
 /*************************************************************************/
@@ -278,7 +327,7 @@ void display(void)
      */
     glClear(GL_COLOR_BUFFER_BIT );
 
-    bifurcate();
+    draw_mandelbrot();
     
     /*
      * show results

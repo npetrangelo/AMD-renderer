@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdarg.h>
 #include "vector.h"
 
 static vector* alloc_vector(int n) {
@@ -15,29 +16,25 @@ void free_vector(vector *v) {
     free(v);
 }
 
-vector* vector2(double x, double y) {
-    vector *v = alloc_vector(2);
-    v->arr[0] = x;
-    v->arr[1] = y;
+vector* make_vector(int count, ...) {
+    if (count < 2 || count > 4) return NULL;
+
+    vector *v = malloc(sizeof(vector));
+    v->len = count;
+    v->arr = malloc(sizeof(double) * count);
+
+    va_list ap;
+    va_start(ap, count);
+    for (int i = 0; i < count; i++) {
+        v->arr[i] = va_arg(ap, double);
+    }
+    va_end(ap);
     return v;
 }
 
-vector* vector3(double x, double y, double z) {
-    vector *v = alloc_vector(3);
-    v->arr[0] = x;
-    v->arr[1] = y;
-    v->arr[2] = z;
-    return v;
-}
-
-vector* vector4(double x, double y, double z, double w) {
-    vector *v = alloc_vector(4);
-    v->arr[0] = x;
-    v->arr[1] = y;
-    v->arr[2] = z;
-    v->arr[3] = w;
-    return v;
-}
+vector* vector2(double x, double y) { return make_vector(2, x, y); }
+vector* vector3(double x, double y, double z) { return make_vector(3, x, y, z); }
+vector* vector4(double x, double y, double z, double w) { return make_vector(4, x, y, z, w); }
 
 vector* vadd(vector* v1, vector* v2) {
     if (v1->len != v2->len) {

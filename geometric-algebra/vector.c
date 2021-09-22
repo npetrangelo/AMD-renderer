@@ -42,16 +42,15 @@ vector* vadd(vector* v1, vector* v2) {
     return v;
 }
 
-double* vdot(vector* v1, vector* v2) {
+int vdot(vector* v1, vector* v2, double* result) {
     if (v1->len != v2->len) {
         printf("Cannot compute dot product: Incompatible vector lengths %d != %d\n", v1->len, v2->len);
-        return NULL;
+        return 0;
     }
     
-    double sum = 0;
+    *result = 0;
     for (int i = 0; i<v1->len; i++) {
-        sum += v1->arr[i]*v2->arr[i];
+        *result += v1->arr[i]*v2->arr[i];
     }
-    double *dot = &sum;
-    return dot;
+    return 1;
 }

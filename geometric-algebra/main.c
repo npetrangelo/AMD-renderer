@@ -9,23 +9,25 @@ int main ( void ) {
     vector* v = vadd(v1, v2);
     if (!v) {
         printf("Addition error\n");
-    } else {
-        printf("sum len=%d, {%f, %f, %f}\n", v->len, v->arr[0], v->arr[1], v->arr[2]);
+        return 1;
     }
+    printf("sum len=%d, {%f, %f, %f}\n", v->len, v->arr[0], v->arr[1], v->arr[2]);
 
     blade* b = bivector(v1, v2);
     if (!b) {
         printf("Bivector error\n");
-    } else {
-        printf("Bivector len=%d\n", b->len);
-        printf("{%f, %f, %f}, {%f, %f, %f}\n",
-            b->arr[0]->arr[0], b->arr[0]->arr[1], b->arr[0]->arr[2],
-            b->arr[1]->arr[0], b->arr[1]->arr[1], b->arr[1]->arr[2]);
+        return 1;
     }
-    double* dot = vdot(v1,v1);
-    if (!dot) {
+    printf("Bivector len=%d\n", b->len);
+    printf("{%f, %f, %f}, {%f, %f, %f}\n",
+        b->arr[0]->arr[0], b->arr[0]->arr[1], b->arr[0]->arr[2],
+        b->arr[1]->arr[0], b->arr[1]->arr[1], b->arr[1]->arr[2]);
+
+    double dot = 0;
+    if (!vdot(v1,v1, &dot)) {
         printf("Dot product error\n");
-    } else {
-        printf("Dot product %f\n", *dot);
+        return 1;
     }
+
+    printf("Dot product %f\n", dot);
 }

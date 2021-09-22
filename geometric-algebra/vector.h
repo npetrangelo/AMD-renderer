@@ -7,8 +7,8 @@ typedef struct {
 } vector;
 
 // Create and destroy vectors.
-vector* make_vector(int count, ...);
 void free_vector(vector *v);
+vector* make_vector(int count, ...);
 
 // Handy shortcuts for creating vectors.
 vector* vector2(double x, double y);

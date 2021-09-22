@@ -1,49 +1,62 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdarg.h>
 #include "vector.h"
 #include "blade.h"
 
-blade* univector(vector* v) {
-    blade *b = malloc(sizeof(short) + sizeof(v));
-    b->len = 1;
-    b->arr[0] = v;
+static blade* alloc_blade(int n) {
+    blade *b = malloc(sizeof(blade));
+    b->len = n;
+    b->arr = malloc(sizeof(vector) * n);
     return b;
 }
 
-blade* bivector(vector* v1, vector* v2) {
-    if (v1->len != v2->len) {
-        printf("Cannot make bivector: Incompatible vector lengths %d and %d\n", v1->len, v2->len);
-        return NULL;
+void free_blade(blade *b) {
+    if (!b) return;
+    for (int i = 0; i < b->len; i++) {
+        free_vector(b->arr[i]);
     }
-    blade *b = malloc(sizeof(short) + 2*sizeof(v1));
-    b->len = 2;
-    b->arr[0] = v1;
-    b->arr[1] = v2;
+    free(b->arr);
+    free(b);
+}
+
+blade* make_blade(int count, ...) {
+    if (count < 1 || count > 3) return NULL;
+
+    blade *b = alloc_blade(count);
+
+    va_list ap;
+    va_start(ap, count);
+    for (int i = 0; i < count; i++) {
+        b->arr[i] = va_arg(ap, vector*);
+        if (b->arr[0]->len != b->arr[i]->len) {
+            printf("Cannot make trivector: Incompatible vector lengths");
+            free_blade(b);
+            return NULL;
+        }
+    }
+    va_end(ap);
     return b;
 }
 
-blade* trivector(vector* v1, vector* v2, vector* v3) {
-    if (v1->len != v2->len || v1->len != v3->len) {
-        printf("Cannot make trivector: Incompatible vector lengths %d, %d, and %d\n", v1->len, v2->len, v3->len);
+blade* univector(vector* v) { return make_blade(1, v); }
+blade* bivector(vector* v1, vector* v2) { return make_blade(2, v1, v2); }
+blade* trivector(vector* v1, vector* v2, vector* v3) { return make_blade(3, v1, v2, v3); }
+
+blade* badd(blade* b1, blade* b2) {
+    if (b1->len != b2->len) {
+        printf("Cannot add: Incompatible nvector lengths %d != %d\n", b1->len, b2->len);
         return NULL;
     }
-    blade *b = malloc(sizeof(short) + 3*sizeof(v1));
-    b->len = 3;
-    b->arr[0] = v1;
-    b->arr[1] = v2;
-    b->arr[2] = v3;
+    blade *b = alloc_blade(b1->len);
+    for (int i = 0; i<b1->len; i++) {
+        b->arr[i] = vadd(b1->arr[i], b2->arr[i]); //v1->arr[i] + v2->arr[i];
+    }
     return b;
 }
 
-blade* badd(blade* nv1, blade* nv2) {
-    if (nv1->len != nv2->len) {
-        printf("Cannot add: Incompatible nvector lengths %d != %d\n", nv1->len, nv2->len);
-        return NULL;
-    }
-    blade *b = malloc(sizeof(nv1));
-    b->len = nv1->len;
-    for (int i = 0; i<nv1->len; i++) {
-        b->arr[i] = vadd(nv1->arr[i], nv2->arr[i]); //v1->arr[i] + v2->arr[i];
-    }
-    return b;
+blade* bmultiply(blade* b1, blade* b2) {
+    // TODO
+    // Append vector arrays in order
+    // Internal vectors must be of equal dimension; compare first vector in each array
 }

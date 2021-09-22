@@ -106,7 +106,7 @@ void draw_point( float x, float y )
      * draw points
      */
     glBegin(GL_POINTS);
-        glVertex2f( x, y );
+        glVertex2f( 0.5+x, 0.5+y );
     glEnd();
 
 }
@@ -371,7 +371,7 @@ void display(void)
      */
     glClear(GL_COLOR_BUFFER_BIT );
 
-    draw_julia();
+    horizontal_gradient();
     
     /*
      * show results

@@ -19,9 +19,7 @@ void free_vector(vector *v) {
 vector* make_vector(int count, ...) {
     if (count < 2 || count > 4) return NULL;
 
-    vector *v = malloc(sizeof(vector));
-    v->len = count;
-    v->arr = malloc(sizeof(double) * count);
+    vector *v = alloc_vector(count);
 
     va_list ap;
     va_start(ap, count);

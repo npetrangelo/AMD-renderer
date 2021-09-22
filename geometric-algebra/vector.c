@@ -9,6 +9,12 @@ static vector* make_vector(int n) {
     return v;
 }
 
+void free_vector(vector *v) {
+    if (!v) return;
+    free(v->arr);
+    free(v);
+}
+
 vector* vector2(double x, double y) {
     vector *v = make_vector(2);
     v->arr[0] = x;

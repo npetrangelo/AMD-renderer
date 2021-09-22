@@ -6,6 +6,8 @@ typedef struct {
     double *arr;
 } vector;
 
+void free_vector(vector *v);
+
 vector* vector2(double x, double y);
 vector* vector3(double x, double y, double z);
 vector* vector4(double x, double y, double z, double w);

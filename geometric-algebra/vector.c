@@ -2,17 +2,22 @@
 #include <stdio.h>
 #include "vector.h"
 
+static vector* make_vector(int n) {
+    vector *v = malloc(sizeof(vector));
+    v->len = n;
+    v->arr = malloc(sizeof(double) * n);
+    return v;
+}
+
 vector* vector2(double x, double y) {
-    vector *v = malloc(sizeof(short) + 2*sizeof(double));
-    v->len = 2;
+    vector *v = make_vector(2);
     v->arr[0] = x;
     v->arr[1] = y;
     return v;
 }
 
 vector* vector3(double x, double y, double z) {
-    vector *v = malloc(sizeof(short) + 3*sizeof(double));
-    v->len = 3;
+    vector *v = make_vector(3);
     v->arr[0] = x;
     v->arr[1] = y;
     v->arr[2] = z;
@@ -20,8 +25,7 @@ vector* vector3(double x, double y, double z) {
 }
 
 vector* vector4(double x, double y, double z, double w) {
-    vector *v = malloc(sizeof(short) + 4*sizeof(double));
-    v->len = 4;
+    vector *v = make_vector(4);
     v->arr[0] = x;
     v->arr[1] = y;
     v->arr[2] = z;
@@ -34,8 +38,7 @@ vector* vadd(vector* v1, vector* v2) {
         printf("Cannot add: Incompatible vector lengths %d != %d\n", v1->len, v2->len);
         return NULL;
     }
-    vector *v = malloc(sizeof(*v1));
-    v->len = v1->len;
+    vector *v = make_vector(v1->len);
     for (int i = 0; i<v1->len; i++) {
         v->arr[i] = v1->arr[i] + v2->arr[i];
     }

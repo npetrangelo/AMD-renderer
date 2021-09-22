@@ -3,7 +3,7 @@
 
 typedef struct {
     short len;
-    double arr[];
+    double *arr;
 } vector;
 
 vector* vector2(double x, double y);

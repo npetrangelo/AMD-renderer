@@ -18,3 +18,4 @@ vector* vector4(double x, double y, double z, double w);
 // Vector math functions.
 vector* vadd(vector* v1, vector* v2);
 int vdot(vector* v1, vector* v2, double* result);
+double vmag(vector* v);

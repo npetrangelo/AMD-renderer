@@ -58,3 +58,11 @@ int vdot(vector* v1, vector* v2, double* result) {
     }
     return 1;
 }
+
+double vmag(vector* v) {
+    double dot = 0;
+    if (!vdot(v, v, &dot)) {
+        return -1.0;
+    }
+    return sqrt(dot);
+}

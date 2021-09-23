@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "vector.h"
 #include "blade.h"
+#include "matrix.h"
 
 int main ( void ) {
     vector* v1 = vector3(1.0, 0.0, 0.0);
@@ -30,4 +31,16 @@ int main ( void ) {
     }
 
     printf("Dot product %f\n", dot);
+
+    matrix* m = to_matrix(trivector(vector3(7.0,0.0,4.0), vector3(3.0,9.0,2.0), vector3(1.0,5.0,0.0)));
+    printf("Matrix\n");
+    mprint(m);
+    printf("Submatrix\n");
+    mprint(msub(m, 1, 1));
+    double det = 0;
+    if (!mdet(m, &det)) {
+        printf("Determinant error\n");
+        return 1;
+    }
+    printf("Determinant %f\n", det);
 }

@@ -45,17 +45,29 @@ blade* trivector(vector* v1, vector* v2, vector* v3) { return make_blade(3, v1, 
 
 blade* badd(blade* b1, blade* b2) {
     if (b1->len != b2->len) {
-        printf("Cannot add: Incompatible nvector lengths %d != %d\n", b1->len, b2->len);
+        printf("Cannot add: Incompatible blade lengths %d != %d\n", b1->len, b2->len);
         return NULL;
     }
     blade *b = alloc_blade(b1->len);
     for (int i = 0; i<b1->len; i++) {
-        b->arr[i] = vadd(b1->arr[i], b2->arr[i]); //v1->arr[i] + v2->arr[i];
+        b->arr[i] = vadd(b1->arr[i], b2->arr[i]);
     }
     return b;
 }
 
 blade* bmultiply(blade* b1, blade* b2) {
+    if (b1->arr[0]->len != b2->arr[0]->len) {
+        printf("Cannot multiply: Incompatible dimensions %d != %d\n", b1->arr[0]->len, b2->arr[0]->len);
+        return NULL;
+    }
+    blade *b = alloc_blade(b1->len + b2->len);
+    for (int i = 0; i<b1->len; i++) {
+        b->arr[i] = b1->arr[i];
+    }
+    for (int i = 0; i<b1->len; i++) {
+        b->arr[i+b1->len] = b2->arr[i];
+    }
+    return b;
     // TODO
     // Append vector arrays in order
     // Internal vectors must be of equal dimension; compare first vector in each array

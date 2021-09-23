@@ -39,7 +39,18 @@ matrix* to_matrix(blade* b) {
  * Used for calculating determinants.
  */
 matrix* msub(matrix* m, int col, int row) {
-    matrix* sub = alloc_matrix(m->rows - 1, m->cols - 1);
+    matrix* sub;
+    if (row < 0 && col < 0) {
+        sub = alloc_matrix(m->rows, m->cols);
+    } else if (row < 0) {
+        row = m->rows;
+        sub = alloc_matrix(m->rows, m->cols - 1);
+    } else if (col < 0) {
+        col = m->cols;
+        sub = alloc_matrix(m->rows - 1, m->cols);
+    } else {
+        sub = alloc_matrix(m->rows - 1, m->cols - 1);
+    }
 
     for (int i = 0; i < col; i++) {
         for (int j = 0; j < row; j++) {
@@ -64,7 +75,10 @@ matrix* msub(matrix* m, int col, int row) {
 
 int mdet(matrix* m, double* result) {
     // Fail if matrix isn't square
-    if (m->rows != m->cols || result == NULL) return 0;
+    if (m->rows != m->cols || result == NULL) {
+        printf("Matrix isn't square: %dx%d\n", m->cols, m->rows);
+        return 0;
+    }
 
     if (m->rows == 1) {
         *result = m->arr[0][0];

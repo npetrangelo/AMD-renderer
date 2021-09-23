@@ -36,7 +36,7 @@ int main ( void ) {
     printf("Matrix\n");
     mprint(m);
     printf("Submatrix\n");
-    mprint(msub(m, 1, 1));
+    mprint(msub(m, -1, 1));
     double det = 0;
     if (!mdet(m, &det)) {
         printf("Determinant error\n");

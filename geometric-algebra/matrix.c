@@ -34,9 +34,15 @@ matrix* to_matrix(blade* b) {
     return m;
 }
 
+int is_square(matrix* m) {
+    return (m->rows == m->cols);
+}
+
 /**
  * Generates a submatrix skipping the specified row and column.
  * Used for calculating determinants.
+ * 
+ * Doesn't skip if given negative number
  */
 matrix* msub(matrix* m, int col, int row) {
     matrix* sub;
@@ -75,7 +81,7 @@ matrix* msub(matrix* m, int col, int row) {
 
 int mdet(matrix* m, double* result) {
     // Fail if matrix isn't square
-    if (m->rows != m->cols || result == NULL) {
+    if (!is_square(m) || result == NULL) {
         printf("Matrix isn't square: %dx%d\n", m->cols, m->rows);
         return 0;
     }

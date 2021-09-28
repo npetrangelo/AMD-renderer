@@ -19,3 +19,4 @@ blade* trivector(vector* v1, vector* v2, vector* v3);
 // Blade math functions.
 blade* badd(blade* b1, blade* b2);
 blade* bmultiply(blade* b1, blade* b2);
+int bmag(blade* b, double* mag);

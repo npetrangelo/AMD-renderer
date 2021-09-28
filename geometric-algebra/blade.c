@@ -3,6 +3,7 @@
 #include <stdarg.h>
 #include "vector.h"
 #include "blade.h"
+#include "matrix.h"
 
 static blade* alloc_blade(int n) {
     blade *b = malloc(sizeof(blade));
@@ -71,4 +72,12 @@ blade* bmultiply(blade* b1, blade* b2) {
     // TODO
     // Append vector arrays in order
     // Internal vectors must be of equal dimension; compare first vector in each array
+}
+
+int bmag(blade* b, double* mag) {
+    if (mdet(to_matrix(b), mag)) {
+        return 1;
+    } else {
+        // Magnitude of every vector combination
+    };
 }

@@ -23,6 +23,12 @@ int main ( void ) {
     printf("{%f, %f, %f}, {%f, %f, %f}\n",
         b->arr[0]->arr[0], b->arr[0]->arr[1], b->arr[0]->arr[2],
         b->arr[1]->arr[0], b->arr[1]->arr[1], b->arr[1]->arr[2]);
+    double mag = 0;
+    if (!bmag(b, &mag)) {
+        printf("Magnitude error\n");
+        return 1;
+    }
+    printf("Bivector Magnitude: %f\n", mag);
 
     double dot = 0;
     if (!vdot(v1,v1, &dot)) {

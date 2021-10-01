@@ -17,3 +17,6 @@ void left(turtle* t, float angle);
 void right(turtle* t, float angle);
 
 void square(turtle* t, float size);
+void circle(turtle* t);
+void spiral(turtle* t);
+void star(turtle* t);

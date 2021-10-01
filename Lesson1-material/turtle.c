@@ -36,6 +36,22 @@ void right(turtle* t, float angle) {
 void square(turtle* t, float size) {
     for (int i = 0; i < 4; i++) {
         forward(t, size);
-        left(t, PI/2.0);
+        right(t, PI/2.0);
     }
+}
+
+void circle(turtle* t) {
+    float increment = 0.2;
+    for (float i = 0; i <= 2*PI; i+=increment) {
+        forward(t, 30);
+        right(t, increment);
+    }
+}
+
+void spiral(turtle* t) {
+
+}
+
+void star(turtle* t) {
+
 }

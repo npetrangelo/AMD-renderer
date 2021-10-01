@@ -134,6 +134,13 @@ void draw_fan( void ) {
     }
 }
 
+void draw_grid( void ) {
+    for (int i = -300; i <= 300; i += 50) {
+        draw_line(-300, i, 300, i);
+        draw_line(i, -300, i, 300);
+    }
+}
+
 /*
  * my_drawing
  *
@@ -170,7 +177,7 @@ void display(void)
      */
     glClear(GL_COLOR_BUFFER_BIT );
 
-    draw_fan();
+    draw_grid();
     
     /*
      * show results

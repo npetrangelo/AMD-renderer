@@ -48,11 +48,7 @@ void ngon(turtle* t, int numSides, float size) {
 }
 
 void circle(turtle* t) {
-    float increment = 0.2;
-    for (float i = 0; i <= 2*PI; i+=increment) {
-        forward(t, 30);
-        right(t, increment);
-    }
+    ngon(t, 30, 30);
 }
 
 void spiral(turtle* t) {

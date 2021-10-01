@@ -145,7 +145,7 @@ void draw_grid( void ) {
 
 void draw_turtle( void ) {
     turtle* t = make_turtle();
-    circle(t);
+    spiral(t);
 }
 
 /*

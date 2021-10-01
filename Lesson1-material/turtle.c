@@ -49,7 +49,11 @@ void circle(turtle* t) {
 }
 
 void spiral(turtle* t) {
-
+    float increment = 0.2;
+    for (float i = 0; i <= 2*PI; i+=increment) {
+        forward(t, i*10);
+        right(t, increment);
+    }
 }
 
 void star(turtle* t) {

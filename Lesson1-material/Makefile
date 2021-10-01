@@ -3,6 +3,7 @@ all:
 	make foo
 	make point
 	make life
+	make line
 
 foo:
 	gcc foo.c -o bin/foo -framework OpenGL -framework GLUT
@@ -12,6 +13,9 @@ point:
 
 life:
 	gcc life.c -o bin/life -framework OpenGL -framework GLUT
+
+line:
+	gcc line.c -o bin/line -framework OpenGL -framework GLUT
 
 clean:
 	-rm *.o $(objects)

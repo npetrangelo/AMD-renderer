@@ -56,6 +56,9 @@ void spiral(turtle* t) {
     }
 }
 
-void star(turtle* t) {
-
+void star(turtle* t, float size) {
+    for (int i = 0; i < 5; i++) {
+        forward(t, size);
+        right(t, 4.0*PI/5.0);
+    }
 }

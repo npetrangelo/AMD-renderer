@@ -145,7 +145,7 @@ void draw_grid( void ) {
 
 void draw_turtle( void ) {
     turtle* t = make_turtle();
-    star(t, 200.0);
+    ngon(t, 9, 100.0);
 }
 
 /*

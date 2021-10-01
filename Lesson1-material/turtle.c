@@ -40,6 +40,13 @@ void square(turtle* t, float size) {
     }
 }
 
+void ngon(turtle* t, int numSides, float size) {
+    for (int i = 0; i < numSides; i++) {
+        forward(t, size);
+        right(t, 2.0*PI/((float) numSides));
+    }
+}
+
 void circle(turtle* t) {
     float increment = 0.2;
     for (float i = 0; i <= 2*PI; i+=increment) {

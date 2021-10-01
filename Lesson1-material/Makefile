@@ -17,6 +17,9 @@ life:
 line:
 	gcc line.c -o bin/line -framework OpenGL -framework GLUT
 
+turtle:
+	gcc line.c -o bin/line turtle.c -framework OpenGL -framework GLUT
+
 clean:
 	-rm *.o $(objects)
 	-rm bin/*

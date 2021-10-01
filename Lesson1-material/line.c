@@ -20,6 +20,8 @@
 #include <time.h>
 #include <limits.h>
 #include <stdio.h>
+#include "line.h"
+#include "turtle.h"
 
 /*************************************************************************/
 /* defines                                                               */
@@ -141,6 +143,11 @@ void draw_grid( void ) {
     }
 }
 
+void draw_turtle( void ) {
+    turtle* t = make_turtle();
+    square(t, 200.0);
+}
+
 /*
  * my_drawing
  *
@@ -177,7 +184,7 @@ void display(void)
      */
     glClear(GL_COLOR_BUFFER_BIT );
 
-    draw_grid();
+    draw_turtle();
     
     /*
      * show results

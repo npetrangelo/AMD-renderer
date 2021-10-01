@@ -25,6 +25,7 @@
 /* defines                                                               */
 /*************************************************************************/
 #define repeat(x)       for( global_index = 0; global_index < (int)(x); global_index++ )
+#define PI 3.14159
 
 /*************************************************************************/
 /* global variables                                                      */
@@ -118,10 +119,18 @@ void draw_line(float x0, float y0, float x1, float y1) {
     }
 }
 
-void draw_lines( void ) {
+void random_lines( void ) {
     for (int i = 0; i < 20; i++) {
         set_color(random_float(0.0, 1.0), random_float(0.0, 1.0), random_float(0.0, 1.0), 0.0);
         draw_line(random_int(-400, 400), random_int(-400, 400), random_int(-400, 400), random_int(-400, 400));
+    }
+}
+
+void draw_fan( void ) {
+    float radius = 100;
+    for (int i = 0; i < 180; i+=15) {
+        float radians = i * PI/180.0;
+        draw_line(-radius * cos(radians), -radius * sin(radians), radius * cos(radians), radius * sin(radians));
     }
 }
 
@@ -161,7 +170,7 @@ void display(void)
      */
     glClear(GL_COLOR_BUFFER_BIT );
 
-    draw_lines();
+    draw_fan();
     
     /*
      * show results

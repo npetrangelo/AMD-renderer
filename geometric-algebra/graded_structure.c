@@ -69,24 +69,9 @@ gradedStructure* gadd(gradedStructure* g1, gradedStructure* g2) {
 gradedStructure* wedge(gradedStructure* g1, gradedStructure* g2) {
     gradedStructure *g = alloc_gradedStructure(max(g1->space, g2->space);
 
-    // Scale g1 by g2 scalar
-    for (unsigned int i = 1; i < len(g1); i++) {
-        g[i] += g2[0]*g1[i];
-    }
-
-    // Scale g2 by g1 scalar
-    for (unsigned int j = 1; j < len(g2); j++) {
-        g[j] += g1[0]*g2[j];
-    }
-
-    for (unsigned int i = 1; i < len(g1); i++) {
-        for (unsigned int j = 1; j < len(g2); j++) {
-            if (i <= g1->space && j <= g2->space) {
-                g[(i)^(j)] += g1[i]*g2[j];
-            }
-            if (i <= g2->space && j <= g1->space) {
-                g[(i)^(j)] -= g2[i]*g1[j];
-            }
+    for (unsigned int i = 0; i < len(g1); i++) {
+        for (unsigned int j = 0; j < len(g2); j++) {
+            g[(i)^(j)] += g1[i]*g2[j] * map[i][j];
         }
     }
 

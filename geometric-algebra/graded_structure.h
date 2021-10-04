@@ -28,5 +28,5 @@ gradedStructure* vector4(double x, double y, double z, double w);
 
 // Graded structure math functions.
 gradedStructure* gadd(gradedStructure* g1, gradedStructure* g2);
-gradedStructure* wedge(gradedStructure* g1, gradedStructure* g2);
+gradedStructure* gmult(gradedStructure* g1, gradedStructure* g2);
 double gdot(gradedStructure* g1, gradedStructure* g2);

@@ -66,7 +66,7 @@ gradedStructure* gadd(gradedStructure* g1, gradedStructure* g2) {
     return g;
 }
 
-gradedStructure* wedge(gradedStructure* g1, gradedStructure* g2) {
+gradedStructure* gmult(gradedStructure* g1, gradedStructure* g2) {
     gradedStructure *g = alloc_gradedStructure(max(g1->space, g2->space);
 
     for (unsigned int i = 0; i < len(g1); i++) {

@@ -94,7 +94,11 @@ gradedStructure* wedge(gradedStructure* g1, gradedStructure* g2) {
 }
 
 double gdot(gradedStructure* g1, gradedStructure* g2) {
-    double sum = g1[0]*g2[0];
+    double sum = 0;
 
-    for (unsigned int i = 0; )
+    for (unsigned int i = 0; i < min(g1->space, g2->space); i++) {
+        double sum = g1[i]*g2[i]*map[i][i];
+    }
+
+    return sum;
 }

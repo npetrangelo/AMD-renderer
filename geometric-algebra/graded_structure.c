@@ -49,14 +49,20 @@ gradedStructure* vector3(double x, double y, double z) { return make_vector(3, x
 gradedStructure* vector4(double x, double y, double z, double w) { return make_vector(4, x, y, z, w); }
 
 gradedStructure* gadd(gradedStructure* g1, gradedStructure* g2) {
-    if (g1->space != g2->space) {
-        printf("Cannot add: Incompatible spaces %d != %d\n", g1->space, g2->space);
-        return NULL;
-    }
-    gradedStructure *g = alloc_gradedStructure(g1->space);
-    for (int i = 0; i < len(g1); i++) {
+    gradedStructure *g = alloc_gradedStructure(max(g1->space, g2->space);
+    int minLength = pow(2, min(g1->space, g2->space));
+
+    for (int i = 0; i < minLength; i++) {
         g->arr[i] = g1->arr[i] + g2->arr[i];
     }
+
+    if (g1->space == g2->space) return g;
+
+    gradedStructure* gmax = (g1->space > g2->space) ? g1 : g2;
+    for (int i = minLength; i < len(g); i++) {
+        g->arr[i] = gmax->arr[i];
+    }
+
     return g;
 }
 

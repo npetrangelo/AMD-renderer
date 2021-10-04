@@ -109,9 +109,9 @@ void koch_fractal(turtle* t, float length) {
     }
     koch_fractal(t, length/3.0);
     left(t, PI/3.0);
-    koch_fractal(t, length/3.0);
+    koch_fractal(t, length/2.0);
     right(t, 2.0*PI/3.0);
-    koch_fractal(t, length/3.0);
+    koch_fractal(t, length/2.0);
     left(t, PI/3.0);
     koch_fractal(t, length/3.0);
 }

@@ -25,3 +25,4 @@ void V(turtle* t, float size, float angle);
 
 void square_fractal(turtle* t, float size);
 void V_fractal(turtle* t, float size, float angle);
+void koch_fractal(turtle* t, float length);

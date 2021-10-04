@@ -101,3 +101,17 @@ void V_fractal(turtle* t, float size, float angle) {
     back(t, size);
     left(t, angle/2.0);
 }
+
+void koch_fractal(turtle* t, float length) {
+    if (length <= 5.0) {
+        forward(t, length);
+        return;
+    }
+    koch_fractal(t, length/3.0);
+    left(t, PI/3.0);
+    koch_fractal(t, length/3.0);
+    right(t, 2.0*PI/3.0);
+    koch_fractal(t, length/3.0);
+    left(t, PI/3.0);
+    koch_fractal(t, length/3.0);
+}

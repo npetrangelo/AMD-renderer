@@ -150,7 +150,7 @@ void draw_grid( void ) {
 
 void draw_turtle( void ) {
     turtle* t = make_turtle();
-    V_fractal(t, 100.0, random_float(PI/5.0, PI/2));
+    koch_fractal(t, 300.0);
 }
 
 /*

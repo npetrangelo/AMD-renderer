@@ -21,3 +21,7 @@ void ngon(turtle* t, int numSides, float size);
 void circle(turtle* t);
 void spiral(turtle* t);
 void star(turtle* t, float size);
+void V(turtle* t, float size, float angle);
+
+void square_fractal(turtle* t, float size);
+void V_fractal(turtle* t, float size, float angle);

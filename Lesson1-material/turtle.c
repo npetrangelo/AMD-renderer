@@ -65,3 +65,39 @@ void star(turtle* t, float size) {
         right(t, 4.0*PI/5.0);
     }
 }
+
+void V(turtle* t, float size, float angle) {
+    left(t, angle/2.0);
+    forward(t, size);
+    back(t, size);
+    right(t, angle);
+    forward(t, size);
+    back(t, size);
+    left(t, angle/2.0);
+}
+
+void square_fractal(turtle* t, float size) {
+    for (int i = 0; i < 4; i++) {
+        forward(t, size);
+        if (size > 10.0) {
+            square_fractal(t, size/2.0);
+        }
+        right(t, PI/2.0);
+    }
+}
+
+void V_fractal(turtle* t, float size, float angle) {
+    left(t, angle/2.0);
+    forward(t, size);
+    if (size > 10.0) {
+        V_fractal(t, size/2.0, angle);
+    }
+    back(t, size);
+    right(t, angle);
+    forward(t, size);
+    if (size > 10.0) {
+        V_fractal(t, size/2.0, angle);
+    }
+    back(t, size);
+    left(t, angle/2.0);
+}

@@ -115,6 +115,11 @@ void draw_point( float x, float y )
 }
 
 void draw_line(float x0, float y0, float x1, float y1) {
+    if (x0==x1 && y0==y1) {
+        draw_point(x0, y0);
+        return;
+    }
+    
     float increment = 1.0/fmax(fabs(x1 - x0), fabs(y1 - y0));
     for (float i = 0.0; i <= 1.0; i += increment) {
         draw_point(lerp(x0, x1, i), lerp(y0, y1, i));
@@ -145,7 +150,7 @@ void draw_grid( void ) {
 
 void draw_turtle( void ) {
     turtle* t = make_turtle();
-    circle(t);
+    V_fractal(t, 100.0, random_float(PI/5.0, PI/2));
 }
 
 /*

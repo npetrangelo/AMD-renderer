@@ -22,6 +22,7 @@
 #include <stdio.h>
 #include "line.h"
 #include "turtle.h"
+#include "bresenham.h"
 
 /*************************************************************************/
 /* defines                                                               */
@@ -126,22 +127,6 @@ void draw_line(float x0, float y0, float x1, float y1) {
     }
 }
 
-void bresenham(float x0, float y0, float x1, float y1) {
-    float y = y0;
-    float dx = x1 - x0;
-    float dy = y1 - y0;
-    int error = (int)(2*dy - dx);
-
-    for (int x = x0; x <= x1; x++) {
-        draw_point(x, y);
-        error += (int)(2*dy);
-        if (error > 0) {
-            y++;
-            error -= (int)(2*dx);
-        }
-    }
-}
-
 void random_lines( void ) {
     for (int i = 0; i < 20; i++) {
         set_color(random_float(0.0, 1.0), random_float(0.0, 1.0), random_float(0.0, 1.0), 0.0);
@@ -205,7 +190,9 @@ void display(void)
      */
     glClear(GL_COLOR_BUFFER_BIT );
 
-    draw_turtle();
+    bresenham(200.0, 0.0, -200.0, 100.0);
+
+    // draw_turtle();
     
     /*
      * show results

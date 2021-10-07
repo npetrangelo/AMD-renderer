@@ -23,6 +23,7 @@
 #include "line.h"
 #include "turtle.h"
 #include "bresenham.h"
+#include "xiaolin.h"
 
 /*************************************************************************/
 /* defines                                                               */
@@ -176,6 +177,8 @@ void my_drawing( void )
  */
 void display(void)
 {
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_BLEND);
     if( Mojave_WorkAround )
     {
         glutReshapeWindow(2 * window_size,2 * window_size);//Necessary for Mojave. Has to be different dimensions than in glutInitWindowSize();
@@ -190,7 +193,9 @@ void display(void)
      */
     glClear(GL_COLOR_BUFFER_BIT );
 
-    bresenham(200.0, 0.0, -200.0, 100.0);
+    bresenham(-200.0, 0.0, 200.0, 10.0);
+    xiaolin(-200.0, 0.0, 200.0, 10.0);
+
 
     // draw_turtle();
     

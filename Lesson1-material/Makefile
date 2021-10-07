@@ -18,7 +18,7 @@ line:
 	gcc line.c -o bin/line -framework OpenGL -framework GLUT
 
 turtle:
-	gcc line.c -o bin/line turtle.c bresenham.c -framework OpenGL -framework GLUT
+	gcc line.c -o bin/line turtle.c bresenham.c xiaolin.c -framework OpenGL -framework GLUT
 
 clean:
 	-rm *.o $(objects)

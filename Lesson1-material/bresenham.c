@@ -2,7 +2,7 @@
 #include "line.h"
 #include "bresenham.h"
 
-void plotLineLow(int x0, int y0, int x1, int y1) {
+static void plotLineLow(int x0, int y0, int x1, int y1) {
     int dx = x1 - x0;
     int dy = y1 - y0;
     int yi = 1;
@@ -24,7 +24,7 @@ void plotLineLow(int x0, int y0, int x1, int y1) {
     }
 }
 
-void plotLineHigh(int x0, int y0, int x1, int y1) {
+static void plotLineHigh(int x0, int y0, int x1, int y1) {
     int dx = x1 - x0;
     int dy = y1 - y0;
     int xi = 1;

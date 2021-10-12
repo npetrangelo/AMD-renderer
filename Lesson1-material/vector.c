@@ -46,6 +46,14 @@ vector* vadd(vector* v1, vector* v2) {
     return v;
 }
 
+vector* vscale(vector* v, double scalar) {
+    vector *scaled = alloc_vector(v->len);
+        for (int i = 0; i < v1->len; i++) {
+        scaled->arr[i] = v->arr[i] * scalar;
+    }
+    return scaled;
+}
+
 int vdot(vector* v1, vector* v2, double* result) {
     if (v1->len != v2->len) {
         printf("Cannot compute dot product: Incompatible vector lengths %d != %d\n", v1->len, v2->len);

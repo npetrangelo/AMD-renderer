@@ -34,24 +34,25 @@ vector* vector2(double x, double y) { return make_vector(2, x, y); }
 vector* vector3(double x, double y, double z) { return make_vector(3, x, y, z); }
 vector* vector4(double x, double y, double z, double w) { return make_vector(4, x, y, z, w); }
 
-vector* vadd(vector* v1, vector* v2) {
-    if (v1->len != v2->len) {
-        printf("Cannot add: Incompatible vector lengths %d != %d\n", v1->len, v2->len);
-        return NULL;
+int vadd(vector* v1, vector* v2, vector* result) {
+    if (v1->len != v2->len || result->len != v1->len) {
+        printf("Cannot add: Incompatible vector lengths %d ≠ %d ≠ %d\n", v1->len, v2->len, result->len);
+        return 0;
     }
-    vector *v = alloc_vector(v1->len);
-    for (int i = 0; i<v1->len; i++) {
-        v->arr[i] = v1->arr[i] + v2->arr[i];
+    for (int i = 0; i < result->len; i++) {
+        result->arr[i] = v1->arr[i] + v2->arr[i];
     }
-    return v;
+    return 1;
 }
 
-vector* vscale(vector* v, double scalar) {
-    vector *scaled = alloc_vector(v->len);
-        for (int i = 0; i < v1->len; i++) {
-        scaled->arr[i] = v->arr[i] * scalar;
+int vscale(vector* v, double s, vector* result) {
+    if (v->len != result->len) {
+        return 0;
     }
-    return scaled;
+    for (int i = 0; i < v1->len; i++) {
+        result->arr[i] = v->arr[i] * scalar;
+    }
+    return 1;
 }
 
 int vdot(vector* v1, vector* v2, double* result) {
@@ -67,10 +68,11 @@ int vdot(vector* v1, vector* v2, double* result) {
     return 1;
 }
 
-double vmag(vector* v) {
+int vmag(vector* v, double* result) {
     double dot = 0;
     if (!vdot(v, v, &dot)) {
-        return -1.0;
+        return 0;
     }
-    return sqrt(dot);
+    *result = sqrt(dot);
+    return 1;
 }

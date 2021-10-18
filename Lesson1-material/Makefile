@@ -1,15 +1,15 @@
 all:
 	make clean
 	make foo
-	make point
+	make lesson1
 	make life
 	make line
 
 foo:
 	gcc foo.c -o bin/foo -framework OpenGL -framework GLUT
 
-point:
-	gcc point.c -o bin/point -framework OpenGL -framework GLUT
+lesson1:
+	gcc lesson1.c -o bin/lesson1 -framework OpenGL -framework GLUT
 
 life:
 	gcc life.c -o bin/life -framework OpenGL -framework GLUT

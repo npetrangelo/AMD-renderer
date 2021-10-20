@@ -4,6 +4,7 @@ all:
 	make lesson1
 	make life
 	make line
+	make buffer
 
 foo:
 	gcc foo.c -o bin/foo -framework OpenGL -framework GLUT
@@ -19,6 +20,9 @@ line:
 
 turtle:
 	gcc line.c -o bin/line turtle.c bresenham.c xiaolin.c -framework OpenGL -framework GLUT
+
+buffer:
+	gcc main.c -o bin/buffer utility.c buffer.c point.c vector.c -framework OpenGL -framework GLUT
 
 clean:
 	-rm *.o $(objects)

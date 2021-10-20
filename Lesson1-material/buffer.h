@@ -1,8 +1,8 @@
 #include "point.h"
 #pragma once
 
-const int SCREEN_WIDTH = 800;
-const int SCREEN_HEIGHT = 800;
+#define SCREEN_WIDTH 800
+#define SCREEN_HEIGHT 800
 
 extern float buffer[SCREEN_WIDTH][SCREEN_HEIGHT][4];
 

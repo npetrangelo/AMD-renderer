@@ -110,7 +110,9 @@ void display(void)
      */
     glClear(GL_COLOR_BUFFER_BIT );
 
-    random_lines();
+    float color[4] = {1.0, 1.0, 1.0, 1.0};
+    draw_border(color);
+    
     render_to_screen();
     
     /*

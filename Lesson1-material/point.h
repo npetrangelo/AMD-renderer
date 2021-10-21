@@ -7,5 +7,4 @@ typedef struct {
 } Point;
 
 // Create and destroy points.
-void free_point(Point *p);
 Point* make_point(float screen[4], float color[4]);

@@ -76,8 +76,8 @@ void draw_grid( float color[4] ) {
         Point *p0 = make_point(screen0, color);
         Point *p1 = make_point(screen1, color);
         draw_line(p0, p1);
-        free_point(p0);
-        free_point(p1);
+        free(p0);
+        free(p1);
         screen0[0] = -300.0; screen0[1] = i;
         screen1[0] = 300.0; screen1[1] = i;
         p0 = make_point(screen0, color);

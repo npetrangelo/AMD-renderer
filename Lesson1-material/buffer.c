@@ -8,8 +8,8 @@
 float buffer[SCREEN_WIDTH][SCREEN_HEIGHT][4] = {0};
 
 void draw_pixel( float x, float y, float color[4] ) {
-    int i = (int)(x + 0.5);
-    int j = (int)(y + 0.5);
+    int i = (int)(x + 0.5) + SCREEN_WIDTH/2;
+    int j = (int)(y + 0.5) + SCREEN_HEIGHT/2;
     vcopy(color, buffer[i][j]);
 }
 

@@ -60,6 +60,5 @@ void draw_border(float color[4]) {
 }
 
 void render_to_screen( void ) {
-    glRasterPos2i(-SCREEN_WIDTH/2, -SCREEN_HEIGHT/2);
     glDrawPixels(SCREEN_WIDTH+1, SCREEN_HEIGHT+1, GL_RGBA, GL_FLOAT, buffer);
 }

@@ -33,7 +33,7 @@
 /*************************************************************************/
 /* global variables                                                      */
 /*************************************************************************/
-int window_size = 400;
+int window_size = 800;
 int Mojave_WorkAround = 0;
 int draw_one_frame = 1;
 int global_index;

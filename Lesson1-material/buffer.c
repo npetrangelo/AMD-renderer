@@ -7,11 +7,12 @@
 #include "vector.h"
 #include "buffer.h"
 
-float buffer[SCREEN_WIDTH][SCREEN_HEIGHT][4] = {0};
+float buffer[SCREEN_WIDTH+1][SCREEN_HEIGHT+1][4] = {0};
 
 void draw_pixel( float x, float y, float color[4] ) {
-    int i = (int)(x + 0.5) + SCREEN_WIDTH/2;
-    int j = (int)(y + 0.5) + SCREEN_HEIGHT/2;
+    int i = (int)(x) + SCREEN_WIDTH/2;
+    int j = (int)(y) + SCREEN_HEIGHT/2;
+    // printf("    drawing pixel to (%d,%d)\n", i, j);
     vcopy(color, buffer[i][j]);
 }
 
@@ -39,7 +40,7 @@ void draw_line( Point* p0, Point* p1 ) {
 
 void draw_n_lines( Point* points[], int n) {
     for (int i = 0; i < n; i++) {
-        printf("Line %d\n", i);
+        printf("Line %d from (%f,%f) to (%f,%f)\n", i, points[i]->screen[0], points[i]->screen[1], points[i+1]->screen[0], points[i+1]->screen[1]);
         draw_line(points[i], points[i+1]);
     }
 }
@@ -57,5 +58,5 @@ void draw_border(float color[4]) {
 
 void render_to_screen( void ) {
     glRasterPos2i(-SCREEN_WIDTH/2, -SCREEN_HEIGHT/2);
-    glDrawPixels(SCREEN_WIDTH, SCREEN_HEIGHT, GL_RGBA, GL_FLOAT, buffer);
+    glDrawPixels(SCREEN_WIDTH+1, SCREEN_HEIGHT+1, GL_RGBA, GL_FLOAT, buffer);
 }

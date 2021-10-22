@@ -4,7 +4,7 @@
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 800
 
-extern float buffer[SCREEN_WIDTH][SCREEN_HEIGHT][4];
+extern float buffer[SCREEN_WIDTH+1][SCREEN_HEIGHT+1][4];
 
 void draw_pixel( float x, float y, float color[4] );
 void draw_point( Point* p );

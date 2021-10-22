@@ -38,10 +38,14 @@ void draw_line( Point* p0, Point* p1 ) {
     }
 }
 
-void draw_n_lines( Point* points[], int n) {
-    for (int i = 0; i < n; i++) {
+void draw_n_lines(Point* points[], int n, int closed) {
+    for (int i = 0; i < n-1; i++) {
         printf("Line %d from (%f,%f) to (%f,%f)\n", i, points[i]->screen[0], points[i]->screen[1], points[i+1]->screen[0], points[i+1]->screen[1]);
         draw_line(points[i], points[i+1]);
+    }
+    if (closed) {
+        printf("Closing line from (%f,%f) to (%f,%f)\n", points[n-1]->screen[0], points[n-1]->screen[1], points[0]->screen[0], points[0]->screen[1]);
+        draw_line(points[n-1], points[0]);
     }
 }
 
@@ -51,9 +55,11 @@ void draw_border(float color[4]) {
     float screen2[4] = {SCREEN_WIDTH/2, SCREEN_HEIGHT/2, 0.0, 0.0};
     float screen3[4] = {SCREEN_WIDTH/2, -SCREEN_HEIGHT/2, 0.0, 0.0};
 
-    Point *p0 = make_point(screen0, color);
-    Point* points[5] = {p0, make_point(screen1, color), make_point(screen2, color), make_point(screen3, color), p0};
-    draw_n_lines(points, 4);
+    Point* points[4] = {make_point(screen0, color),
+                        make_point(screen1, color),
+                        make_point(screen2, color),
+                        make_point(screen3, color)};
+    draw_n_lines(points, 4, 1);
 }
 
 void render_to_screen( void ) {

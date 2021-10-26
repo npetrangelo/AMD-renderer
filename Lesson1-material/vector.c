@@ -18,6 +18,13 @@ int vadd(float v0[4], float v1[4], float result[4]) {
     return 1;
 }
 
+int vinvert(float v[4], float result[4]) {
+    for (int i = 0; i < 4; i++) {
+        result[i] = -v[i];
+    }
+    return 1;
+}
+
 int vscale(float v[4], float s, float result[4]) {
     for (int i = 0; i < 4; i++) {
         result[i] = v[i]*s;
@@ -28,6 +35,17 @@ int vscale(float v[4], float s, float result[4]) {
 int vlerp(float v0[4], float v1[4], float t, float result[4]) {
     for (int i = 0; i < 4; i++) {
         result[i] = flerp(v0[i], v1[i], t);
+    }
+    return 1;
+}
+
+int vnorm(float v[4], float result[4]) {
+    float mag = vmag(v);
+    if (mag == 0.0) {
+        return 0;
+    }
+    for (int i = 0; i < 4; i++) {
+        result[i] = v[i] / mag;
     }
     return 1;
 }

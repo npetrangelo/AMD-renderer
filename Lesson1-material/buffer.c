@@ -3,6 +3,7 @@
 #include <OpenGL/glu.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 #include "point.h"
 #include "vector.h"
 #include "buffer.h"

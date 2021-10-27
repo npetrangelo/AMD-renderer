@@ -1,3 +1,4 @@
+#include "vector.h"
 #pragma once
 
 int qaxis(float angle, float axis[4], float result[4]);

@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
+#include <math.h>
 #include "utility.h"
 #include "vector.h"
 
@@ -39,18 +40,18 @@ int vlerp(float v0[4], float v1[4], float t, float result[4]) {
     return 1;
 }
 
-int vnorm(float v[4], float result[4]) {
-    float mag = vmag(v);
-    if (mag == 0.0) {
+int norm(float v[4], float result[4]) {
+    float m = mag(v);
+    if (m == 0.0) {
         return 0;
     }
     for (int i = 0; i < 4; i++) {
-        result[i] = v[i] / mag;
+        result[i] = v[i] / m;
     }
     return 1;
 }
 
-float vdot(float v0[4], float v1[4]) {
+float dot(float v0[4], float v1[4]) {
     float result = 0;
     for (int i = 0; i < 4; i++) {
         result += v0[i]*v1[i];
@@ -58,6 +59,6 @@ float vdot(float v0[4], float v1[4]) {
     return result;
 }
 
-float vmag(float v[4]) {
-    return sqrt(vdot(v, v));
+float mag(float v[4]) {
+    return sqrt(dot(v, v));
 }

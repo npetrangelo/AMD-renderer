@@ -3,7 +3,7 @@
 #include "quaternion.h"
 
 int qaxis(float angle, float axis[4], float result[4]) {
-    vnorm(axis, result);
+    norm(axis, result);
     vscale(result, sin(angle), result);
     result[3] = result[2];
     result[2] = result[1];

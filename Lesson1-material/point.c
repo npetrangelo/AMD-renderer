@@ -10,3 +10,10 @@ Point* make_point(float screen[4], float color[4]) {
     vcopy(color, p->color);
     return p;
 }
+
+Point* make_vertex(float world[4], float color[4]) {
+    Point *p = malloc(sizeof(Point));
+    vcopy(world, p->world);
+    vcopy(color, p->color);
+    return p;
+}

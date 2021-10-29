@@ -33,11 +33,14 @@ point.o:
 vector.o:
 	gcc -c vector.c -o bin/vector.o
 
+mesh.o:
+	gcc -c mesh.c -o bin/mesh.o
+
 main.o:
 	gcc -c main.c -o bin/main.o
 
-buffer: utility.o vector.o point.o buffer.o main.o
-	gcc -o bin/buffer bin/main.o bin/utility.o bin/buffer.o bin/point.o bin/vector.o -framework OpenGL -framework GLUT
+buffer: utility.o vector.o point.o buffer.o mesh.o main.o
+	gcc -o bin/buffer bin/main.o bin/utility.o bin/buffer.o bin/point.o bin/vector.o bin/mesh.o -framework OpenGL -framework GLUT
 
 clean:
 	-rm *.o $(objects)

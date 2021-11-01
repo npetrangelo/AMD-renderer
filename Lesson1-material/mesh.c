@@ -17,7 +17,14 @@ Mesh* make_mesh(int len_points, int len_tris) {
     m->len_points = len_points;
     m->len_tris = len_tris;
     m->points = malloc(sizeof(Point) * len_points);
-    m->triangles = malloc(3 * sizeof(int) * len_tris); //(int (*)[len_tris][3]) 
+    m->triangles = malloc(3 * sizeof(int) * len_tris);
+    // printf("Setting points null\n");
+    // for (int i = 0; i < m->len_points; i++) {
+    //     m->points = NULL;
+    // }
+    for (int i = 0; i < (3*len_tris); i++) {
+        m->triangles[i] = 0;
+    }
     return m;
 }
 
@@ -26,6 +33,7 @@ int add_point(Mesh *m, Point *p) {
         printf("Cannot add more points to mesh\n");
         return 0;
     }
+    // printf("Adding point x=%f y=%f z=%f\n", p->world[0], p->world[1], p->world[2]);
     m->points[m->num_points++] = *p;
     return 1;
 }
@@ -39,7 +47,7 @@ int add_triangle(Mesh *m, int p0, int p1, int p2) {
     tris[m->num_tris][0] = p0;
     tris[m->num_tris][1] = p1;
     tris[m->num_tris++][2] = p2;
-    printf("Added triangle with vertices [%d %d %d]\n", tris[m->num_tris-1][0], tris[m->num_tris-1][1], tris[m->num_tris-1][2]);
+    // printf("Added triangle with vertices [%d %d %d]\n", tris[m->num_tris-1][0], tris[m->num_tris-1][1], tris[m->num_tris-1][2]);
     return 1;
 }
 
@@ -60,13 +68,16 @@ Mesh* make_plane(float color[4]) {
 }
 
 Mesh* make_cube(float color[4]) {
+    printf("Making cube\n");
     Mesh *m = make_mesh(8, 12);
 
+    printf("Adding points\n");
     for (int i = 0; i < 8; i++) {
         float world[4] = {(i>>0) & 0b1, (i>>1) & 0b1, (i>>2) & 0b1, 0.0};
         add_point(m, make_vertex(world, color));
     }
 
+    printf("Adding triangles\n");
     // Front
     add_triangle(m, 0, 1, 2);
     add_triangle(m, 1, 2, 3);

@@ -23,6 +23,8 @@
 #include "utility.h"
 #include "point.h"
 #include "buffer.h"
+#include "mesh.h"
+#include "camera.h"
 
 /*************************************************************************/
 /* defines                                                               */
@@ -86,6 +88,19 @@ void draw_grid( float color[4] ) {
     }
 }
 
+void draw_cube(float color[4]) {
+    float pos[4] = {-1.0, -1.0, -1.0};
+    Camera *cam = make_camera(200.0, pos);
+    printf("Make cube\n");
+    Mesh *cube = make_cube(color);
+    printf("Transform\n");
+    transform(cam, cube);
+    printf("Ortho\n");
+    ortho(cam, cube);
+    printf("Wireframe\n");
+    wireframe(cam, cube);
+}
+
 /*************************************************************************/
 /* GLUT functions                                                        */
 /*************************************************************************/
@@ -111,7 +126,7 @@ void display(void)
     glClear(GL_COLOR_BUFFER_BIT );
 
     float color[4] = {1.0, 1.0, 1.0, 1.0};
-    draw_border(color);
+    draw_cube(color);
     
     render_to_screen();
     

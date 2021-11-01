@@ -62,14 +62,11 @@ Mesh* make_plane(float color[4]) {
 Mesh* make_cube(float color[4]) {
     Mesh *m = make_mesh(8, 12);
 
-    for (float z = 0.0; z < 2.0; z++) {
-        for (float y = 0.0; y < 2.0; y++) {
-            for (float x = 0.0; x < 2.0; x++) {
-                float world[4] = {x, y, z, 0.0};
-                add_point(m, make_vertex(world, color));
-            }
-        }
+    for (int i = 0; i < 8; i++) {
+        float world[4] = {(i>>0) & 0b1, (i>>1) & 0b1, (i>>2) & 0b1, 0.0};
+        add_point(m, make_vertex(world, color));
     }
+
     // Front
     add_triangle(m, 0, 1, 2);
     add_triangle(m, 1, 2, 3);

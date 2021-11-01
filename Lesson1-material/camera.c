@@ -8,7 +8,7 @@
 Camera* make_camera(float zoom, float pos[4]) {
     Camera *cam = malloc(sizeof(Camera));
     cam->zoom = zoom;
-    vcopy(cam->pos, cam->pos);
+    vcopy(pos, cam->pos);
     vscale(cam->orientation, 0.0, cam->orientation);
     return cam;
 }
@@ -23,9 +23,11 @@ void transform(Camera *cam, Mesh *m) {
 }
 
 void project(Camera *cam, Mesh *m) {
+    printf("Num points projected %d\n", m->num_points);
     for (int i = 0; i < m->num_points; i++) {
-        m->points[i].screen[0] = cam->zoom * m->points[i].cam[0] / m->points[i].world[2];
-        m->points[i].screen[1] = cam->zoom * m->points[i].cam[1] / m->points[i].world[2];
+        printf("Cam z %f\n", m->points[i].cam[2]);
+        m->points[i].screen[0] = cam->zoom * m->points[i].cam[0] / m->points[i].cam[2];
+        m->points[i].screen[1] = cam->zoom * m->points[i].cam[1] / m->points[i].cam[2];
         m->points[i].screen[2] = m->points[i].cam[2];
         m->points[i].screen[3] = 0.0;
     }

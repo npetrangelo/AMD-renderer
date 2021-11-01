@@ -89,14 +89,14 @@ void draw_grid( float color[4] ) {
 }
 
 void draw_cube(float color[4]) {
-    float pos[4] = {-1.0, -1.0, -1.0};
+    float pos[4] = {0.5, 0.5, -1.0};
     Camera *cam = make_camera(200.0, pos);
     printf("Make cube\n");
     Mesh *cube = make_cube(color);
     printf("Transform\n");
     transform(cam, cube);
-    printf("Ortho\n");
-    ortho(cam, cube);
+    printf("Project\n");
+    project(cam, cube);
     printf("Wireframe\n");
     wireframe(cam, cube);
 }

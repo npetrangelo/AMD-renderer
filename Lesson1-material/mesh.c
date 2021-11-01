@@ -39,7 +39,7 @@ int add_triangle(Mesh *m, int p0, int p1, int p2) {
     tris[m->num_tris][0] = p0;
     tris[m->num_tris][1] = p1;
     tris[m->num_tris++][2] = p2;
-    printf("Added triangle with vertices %d %d %d\n", tris[m->num_tris][0], tris[m->num_tris][1], tris[m->num_tris][2]);
+    printf("Added triangle with vertices [%d %d %d]\n", tris[m->num_tris-1][0], tris[m->num_tris-1][1], tris[m->num_tris-1][2]);
     return 1;
 }
 

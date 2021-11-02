@@ -1,7 +1,18 @@
 #include <stdlib.h>
+#include <stdio.h>
+#include <stdarg.h>
 #include <limits.h>
 #include <math.h>
 #include "utility.h"
+
+void console_log(char *format, ...) {
+    if (print_logs) {
+        va_list args;
+        va_start(args, format);
+        vprintf(format, args);
+        va_end(args);
+    }
+}
 
 /*
  * flerp()

@@ -6,6 +6,7 @@
 #include <math.h>
 #include "point.h"
 #include "vector.h"
+#include "utility.h"
 #include "buffer.h"
 
 float buffer[SCREEN_WIDTH+1][SCREEN_HEIGHT+1][4] = {0};
@@ -22,13 +23,13 @@ void draw_point( Point* p ) {
 
 void draw_line( Point* p0, Point* p1 ) {
     if (p0->screen[0]==p1->screen[0] && p0->screen[1]==p1->screen[1]) {
-        printf("Single point line\n");
+        console_log("Single point line\n");
         float color[4] = {0.0};
         vlerp(p0->color, p1->color, 0.5, color);
         draw_pixel(p0->screen[0], p0->screen[1], color);
         return;
     }
-    printf("Line from (%f, %f) to (%f, %f)\n", p0->screen[0], p0->screen[1], p1->screen[0], p1->screen[1]);
+    console_log("Line from (%f, %f) to (%f, %f)\n", p0->screen[0], p0->screen[1], p1->screen[0], p1->screen[1]);
     float screen[4] = {0.0, 0.0, 0.0, 0.0};
     float color[4] = {0.0, 0.0, 0.0, 0.0};
     float increment = 1.0/fmax(fabs(p1->screen[0] - p0->screen[0]), fabs(p1->screen[1] - p0->screen[1]));
@@ -40,12 +41,12 @@ void draw_line( Point* p0, Point* p1 ) {
 }
 
 void draw_n_lines(Point* points[], int n, int closed) {
-    printf("Draw %d lines\n", n);
+    console_log("Draw %d lines\n", n);
     for (int i = 0; i < n-1; i++) {
         draw_line(points[i], points[i+1]);
     }
     if (closed) {
-        printf("Closing line\n");
+        console_log("Closing line\n");
         draw_line(points[n-1], points[0]);
     }
 }

@@ -39,6 +39,7 @@ int window_size = 800;
 int Mojave_WorkAround = 0;
 int draw_one_frame = 1;
 int global_index;
+int print_logs = 0;
 
 /*
  * set_color()
@@ -91,13 +92,13 @@ void draw_grid( float color[4] ) {
 void draw_cube(float color[4]) {
     float pos[4] = {0.5, 0.5, -1.0};
     Camera *cam = make_camera(200.0, pos);
-    printf("Make cube\n");
+    console_log("Make cube\n");
     Mesh *cube = make_cube(color);
-    printf("Transform\n");
+    console_log("Transform\n");
     transform(cam, cube);
-    printf("Project\n");
+    console_log("Project\n");
     project(cam, cube);
-    printf("Wireframe\n");
+    console_log("Wireframe\n");
     wireframe(cam, cube);
 }
 

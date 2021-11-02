@@ -3,6 +3,7 @@
 #include "vector.h"
 #include "point.h"
 #include "buffer.h"
+#include "utility.h"
 #include "camera.h"
 
 Camera* make_camera(float zoom, float pos[4]) {
@@ -23,9 +24,9 @@ void transform(Camera *cam, Mesh *m) {
 }
 
 void project(Camera *cam, Mesh *m) {
-    printf("Num points projected %d\n", m->num_points);
+    console_log("Num points projected %d\n", m->num_points);
     for (int i = 0; i < m->num_points; i++) {
-        printf("Cam z %f\n", m->points[i].cam[2]);
+        console_log("Cam z %f\n", m->points[i].cam[2]);
         m->points[i].screen[0] = cam->zoom * m->points[i].cam[0] / m->points[i].cam[2];
         m->points[i].screen[1] = cam->zoom * m->points[i].cam[1] / m->points[i].cam[2];
         m->points[i].screen[2] = m->points[i].cam[2];
@@ -46,11 +47,11 @@ void wireframe(Camera *cam, Mesh *m) {
     int (*tris)[3] = (int (*)[3])(m->triangles);
     Point *pts[3];
     for (int i = 0; i < m->num_tris; i++) {
-        printf("Get points for triangle %d\n", i);
+        console_log("Get points for triangle %d\n", i);
         pts[0] = &(m->points[tris[i][0]]);
         pts[1] = &(m->points[tris[i][1]]);
         pts[2] = &(m->points[tris[i][2]]);
-        printf("Draw triangle %d\n", i);
+        console_log("Draw triangle %d\n", i);
         draw_n_lines(pts, 3, 1);
     }
 }

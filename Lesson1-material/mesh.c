@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "point.h"
+#include "utility.h"
 #include "mesh.h"
 
 void free_mesh(Mesh *m) {
@@ -68,16 +69,16 @@ Mesh* make_plane(float color[4]) {
 }
 
 Mesh* make_cube(float color[4]) {
-    printf("Making cube\n");
+    console_log("Making cube\n");
     Mesh *m = make_mesh(8, 12);
 
-    printf("Adding points\n");
+    console_log("Adding points\n");
     for (int i = 0; i < 8; i++) {
         float world[4] = {(i>>0) & 0b1, (i>>1) & 0b1, (i>>2) & 0b1, 0.0};
         add_point(m, make_vertex(world, color));
     }
 
-    printf("Adding triangles\n");
+    console_log("Adding triangles\n");
     // Front
     add_triangle(m, 0, 1, 2);
     add_triangle(m, 1, 2, 3);

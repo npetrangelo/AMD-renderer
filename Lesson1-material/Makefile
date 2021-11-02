@@ -33,6 +33,9 @@ point.o:
 vector.o:
 	gcc -c vector.c -o bin/vector.o
 
+quaternion.o:
+	gcc -c quaternion.c -o bin/quaternion.o
+
 mesh.o:
 	gcc -c mesh.c -o bin/mesh.o
 
@@ -42,8 +45,8 @@ camera.o:
 main.o:
 	gcc -c main.c -o bin/main.o
 
-buffer: utility.o vector.o point.o buffer.o mesh.o camera.o main.o
-	gcc -o bin/buffer bin/main.o bin/utility.o bin/buffer.o bin/point.o bin/vector.o bin/mesh.o bin/camera.o -framework OpenGL -framework GLUT
+buffer: utility.o vector.o quaternion.o point.o buffer.o mesh.o camera.o main.o
+	gcc -o bin/buffer bin/main.o bin/utility.o bin/buffer.o bin/point.o bin/vector.o bin/quaternion.o bin/mesh.o bin/camera.o -framework OpenGL -framework GLUT
 
 clean:
 	-rm *.o $(objects)

@@ -3,6 +3,7 @@
 #include <stdarg.h>
 #include <math.h>
 #include "utility.h"
+#include "quaternion.h"
 #include "vector.h"
 
 int vcopy(float from[4], float to[4]) {
@@ -48,6 +49,23 @@ int norm(float v[4], float result[4]) {
     for (int i = 0; i < 4; i++) {
         result[i] = v[i] / m;
     }
+    return 1;
+}
+
+int rotate(float v[4], float axis[4], float angle, float result[4]) {
+    if (!norm(axis, axis)) {
+        return 0;
+    }
+
+    float p[4] = {0.0, v[0], v[1], v[2]};
+    float temp[4];
+
+    float s = sin(angle);
+    float q[4] = {cos(angle), s*axis[0], s*axis[1], s*axis[2]};
+    qmult(q, p, temp);
+    qconjugate(q, q);
+    qmult(temp, q, result);
+    q2v(result, result);
     return 1;
 }
 

@@ -60,8 +60,8 @@ int rotate(float v[4], float axis[4], float angle, float result[4]) {
     float p[4] = {0.0, v[0], v[1], v[2]};
     float temp[4];
 
-    float s = sin(angle);
-    float q[4] = {cos(angle), s*axis[0], s*axis[1], s*axis[2]};
+    float s = sin(angle/2);
+    float q[4] = {cos(angle/2), s*axis[0], s*axis[1], s*axis[2]};
     qmult(q, p, temp);
     qconjugate(q, q);
     qmult(temp, q, result);

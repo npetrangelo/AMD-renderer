@@ -14,6 +14,9 @@ float buffer[SCREEN_WIDTH+1][SCREEN_HEIGHT+1][4] = {0};
 void draw_pixel( float x, float y, float color[4] ) {
     int i = (int)(x) + SCREEN_WIDTH/2;
     int j = (int)(y) + SCREEN_HEIGHT/2;
+    if (i < 0 || i > SCREEN_WIDTH || j < 0 || j > SCREEN_HEIGHT) {
+        return;
+    }
     vcopy(color, buffer[j][i]);
 }
 

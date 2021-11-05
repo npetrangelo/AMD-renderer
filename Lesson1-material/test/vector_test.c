@@ -10,7 +10,7 @@ void testRotate() {
     float v[4] = {1.0, 0.0, 0.0, 0.0};
     float axis[4] = {0.0, 0.0, 1.0, 0.0};
     float result[4] = {0.0};
-    if (!rotate(v, axis, PI/2.0, result)) {
+    if (!vrotate(v, axis, PI/2.0, result)) {
         printf("Rotate failed\n");
     };
     printf("[%f %f %f]\n", result[0], result[1], result[2]);

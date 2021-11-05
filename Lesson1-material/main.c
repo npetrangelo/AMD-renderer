@@ -93,7 +93,7 @@ void draw_grid( float color[4] ) {
 void draw_cube(float color[4]) {
     float pos[4] = {0.5, 0.5, -2.0};
     Camera *cam = make_camera(400.0, pos);
-    float axis[4] = {1.0, 0.0, 0.0, 0.0};
+    float axis[4] = {0.0, 1.0, 0.0, 0.0};
     qrotate(cam->q, axis, PI/8, cam->q);
     console_log("Make cube\n");
     Mesh *cube = make_cube(color);

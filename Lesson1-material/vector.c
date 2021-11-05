@@ -60,14 +60,7 @@ int norm(float v[4], float result[4]) {
     return 1;
 }
 
-int vrotate(float v[4], float axis[4], float angle, float result[4]) {
-    if (!norm(axis, axis)) {
-        return 0;
-    }
-    float unit[4] = {1.0, 0.0, 0.0, 0.0};
-    float q[4];
-    qrotate(unit, axis, angle, q);
-
+int vrotate(float v[4], float q[4], float result[4]) {
     float p[4] = {0.0, v[0], v[1], v[2]};
     float temp[4];
     qmult(q, p, temp);

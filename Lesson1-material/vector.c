@@ -64,8 +64,9 @@ int vrotate(float v[4], float q[4], float result[4]) {
     float p[4] = {0.0, v[0], v[1], v[2]};
     float temp[4];
     qmult(q, p, temp);
-    qconjugate(q, q);
-    qmult(temp, q, result);
+    float qconj[4];
+    qconjugate(q, qconj);
+    qmult(temp, qconj, result);
     q2v(result, result);
     return 1;
 }

@@ -44,6 +44,17 @@ int qmult(float q0[4], float q1[4], float result[4]) {
     return 1;
 }
 
+int qrotate(float p[4], float axis[4], float angle, float result[4]) {
+    if (!norm(axis, axis)) {
+        return 0;
+    }
+
+    float s = sin(angle/2);
+    float q[4] = {cos(angle/2), s*axis[0], s*axis[1], s*axis[2]};
+    qmult(q, p, result);
+    return 1;
+}
+
 int q2v(float q[4], float v[4]) {
     for (int i = 0; i < 3; i++) {
         v[i] = q[i+1];

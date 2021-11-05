@@ -8,10 +8,9 @@
 int print_logs = 0;
 
 void testRotate() {
-    float unit[4] = {1.0, 0.0, 0.0, 0.0};
     float axis[4] = {0.0, 0.0, 1.0, 0.0};
-    float q[4];
-    qrotate(unit, axis, PI/2.0, q);
+    float q[4] = {1.0, 0.0, 0.0, 0.0};
+    qrotate(q, axis, PI/2.0, q);
 
     float v[4] = {1.0, 0.0, 0.0, 0.0};
     float result[4] = {0.0};

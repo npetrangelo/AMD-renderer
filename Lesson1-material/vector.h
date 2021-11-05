@@ -1,6 +1,7 @@
 #pragma once
 
 int vcopy(float from[4], float to[4]);
+int vset(float v[4], float v0, float v1, float v2, float v3);
 
 // Vector math functions.
 int vadd(float v0[4], float v1[4], float result[4]);

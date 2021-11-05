@@ -13,6 +13,14 @@ int vcopy(float from[4], float to[4]) {
     return 1;
 }
 
+int vset(float v[4], float v0, float v1, float v2, float v3) {
+    v[0] = v0;
+    v[1] = v1;
+    v[2] = v2;
+    v[3] = v3;
+    return 1;
+}
+
 int vadd(float v0[4], float v1[4], float result[4]) {
     for (int i = 0; i < 4; i++) {
         result[i] = v0[i] + v1[i];

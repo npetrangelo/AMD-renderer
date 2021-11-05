@@ -14,7 +14,7 @@ float buffer[SCREEN_WIDTH+1][SCREEN_HEIGHT+1][4] = {0};
 void draw_pixel( float x, float y, float color[4] ) {
     int i = (int)(x) + SCREEN_WIDTH/2;
     int j = (int)(y) + SCREEN_HEIGHT/2;
-    vcopy(color, buffer[i][j]);
+    vcopy(color, buffer[j][i]);
 }
 
 void draw_point( Point* p ) {

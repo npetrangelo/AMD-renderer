@@ -18,14 +18,14 @@ Camera* make_camera(float zoom, float pos[4]) {
 void transform(Camera *cam, Mesh *m) {
     float temp[4];
     float conjq[4];
+    qconjugate(cam->q, conjq);
     for (int i = 0; i < m->num_points; i++) {
-        qconjugate(cam->q, conjq);
-        vrotate(m->points[i].world, conjq, temp);
+        temp[0] = m->points[i].world[0] - cam->pos[0];
+        temp[1] = m->points[i].world[1] - cam->pos[1];
+        temp[2] = m->points[i].world[2] - cam->pos[2];
+        temp[3] = 0.0;
 
-        m->points[i].cam[0] = temp[0] - cam->pos[0];
-        m->points[i].cam[1] = temp[1] - cam->pos[1];
-        m->points[i].cam[2] = temp[2] - cam->pos[2];
-        m->points[i].cam[3] = 0.0;
+        vrotate(temp, conjq, m->points[i].cam);
     } 
 }
 

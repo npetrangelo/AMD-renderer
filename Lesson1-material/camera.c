@@ -33,8 +33,8 @@ void project(Camera *cam, Mesh *m) {
     console_log("Num points projected %d\n", m->num_points);
     for (int i = 0; i < m->num_points; i++) {
         console_log("Cam z %f\n", m->points[i].cam[2]);
-        m->points[i].screen[0] = cam->zoom * m->points[i].cam[0] / m->points[i].cam[2];
-        m->points[i].screen[1] = cam->zoom * m->points[i].cam[1] / m->points[i].cam[2];
+        m->points[i].screen[0] = cam->zoom * m->points[i].cam[0] / -m->points[i].cam[2];
+        m->points[i].screen[1] = cam->zoom * m->points[i].cam[1] / -m->points[i].cam[2];
         m->points[i].screen[2] = m->points[i].cam[2];
         m->points[i].screen[3] = 0.0;
     }

@@ -21,6 +21,13 @@ int vset(float v[4], float v0, float v1, float v2, float v3) {
     return 1;
 }
 
+int vinvert(float v[4], float result[4]) {
+    for (int i = 0; i < 4; i++) {
+        result[i] = -v[i];
+    }
+    return 1;
+}
+
 int vadd(float v0[4], float v1[4], float result[4]) {
     for (int i = 0; i < 4; i++) {
         result[i] = v0[i] + v1[i];
@@ -28,11 +35,9 @@ int vadd(float v0[4], float v1[4], float result[4]) {
     return 1;
 }
 
-int vinvert(float v[4], float result[4]) {
-    for (int i = 0; i < 4; i++) {
-        result[i] = -v[i];
-    }
-    return 1;
+int vsub(float v0[4], float v1[4], float result[4]) {
+    vinvert(v1, result);
+    return vadd(v0, result, result);
 }
 
 int vscale(float v[4], float s, float result[4]) {

@@ -4,7 +4,7 @@
 typedef struct {
     float zoom;
     float pos[4];
-    float orientation[4];
+    float q[4];
     
 } Camera;
 

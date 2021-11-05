@@ -10,7 +10,7 @@ Camera* make_camera(float zoom, float pos[4]) {
     Camera *cam = malloc(sizeof(Camera));
     cam->zoom = zoom;
     vcopy(pos, cam->pos);
-    vscale(cam->orientation, 0.0, cam->orientation);
+    vset(cam->q, 1.0, 0.0, 0.0, 0.0);
     return cam;
 }
 

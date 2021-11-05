@@ -7,12 +7,11 @@
 
 int print_logs = 0;
 
-void testRotate() {
+void testRotate(float v[4], float angle) {
     float axis[4] = {0.0, 0.0, 1.0, 0.0};
     float q[4] = {1.0, 0.0, 0.0, 0.0};
-    qrotate(q, axis, PI/2.0, q);
+    qrotate(q, axis, angle, q);
 
-    float v[4] = {1.0, 0.0, 0.0, 0.0};
     float result[4] = {0.0};
     if (!vrotate(v, q, result)) {
         printf("Rotate failed\n");
@@ -21,5 +20,6 @@ void testRotate() {
 }
 
 int main(int argc, char **argv) {
-    testRotate();
+    float v[4] = {1.0, 0.0, 0.0, 0.0};
+    testRotate(v, PI/4.0);
 }

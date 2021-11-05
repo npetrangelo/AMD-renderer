@@ -36,7 +36,9 @@ int qconjugate(float q[4], float result[4]) {
     return 1;
 }
 
-int qmult(float q0[4], float q1[4], float result[4]) {
+int qmult(float p0[4], float p1[4], float result[4]) {
+    float q0[4], q1[4];
+    vcopy(p0, q0); vcopy(p1, q1);
     result[0] = (q0[0] * q1[0]) - (q0[1] * q1[1]) - (q0[2] * q1[2]) - (q0[3] * q1[3]);
     result[1] = (q0[1] * q1[0]) + (q0[0] * q1[1]) - (q0[3] * q1[2]) + (q0[2] * q1[3]);
     result[2] = (q0[2] * q1[0]) + (q0[3] * q1[1]) + (q0[0] * q1[2]) - (q0[1] * q1[3]);

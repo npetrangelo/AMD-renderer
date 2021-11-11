@@ -76,6 +76,16 @@ int vrotate(float v[4], float q[4], float result[4]) {
     return 1;
 }
 
+int vcross(float v0[4], float v1[4], float result[4]) {
+    float q0[4], q1[4];
+    vcopy(v0, q0); vcopy(v1, q1);
+
+    result[0] = q0[1]*q1[2] - q0[2]*q1[1];
+    result[1] = q0[2]*q1[0] - q0[0]*q1[2];
+    result[2] = q0[0]*q1[1] - q0[1]*q1[0];
+    return 1;
+}
+
 float dot(float v0[4], float v1[4]) {
     float result = 0;
     for (int i = 0; i < 4; i++) {

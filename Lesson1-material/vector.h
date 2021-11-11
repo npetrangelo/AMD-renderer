@@ -11,5 +11,6 @@ int vscale(float v[4], float s, float result[4]);
 int vlerp(float v0[4], float v1[4], float t, float result[4]);
 int norm(float v[4], float result[4]);
 int vrotate(float v[4], float q[4], float result[4]);
+int vcross(float v0[4], float v1[4], float result[4]);
 float dot(float v0[4], float v1[4]);
 float mag(float v[4]);

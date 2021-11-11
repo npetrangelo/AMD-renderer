@@ -92,10 +92,14 @@ void draw_grid( float color[4] ) {
 
 void draw_cube(float color[4]) {
     float pos[4] = {1.5, 0.5, 3.0};
-    Camera *cam = make_camera(400.0, pos);
-    float axis[4] = {0.0, 1.0, 0.0, 0.0};
-    qrotate(cam->q, axis, PI/8, cam->q);
-    console_log("Make cube\n");
+    Camera *cam = make_camera(500.0, pos);
+    // float axis[4] = {0.0, 1.0, 0.0, 0.0};
+    // qrotate(cam->q, axis, PI/8, cam->q);
+    float origin[4] = {0.0, 0.0, 0.0, 0.0};
+    look_at(cam, origin);
+    console_log(Info, "Main: cam->q=[%f, %f, %f, %f]\n", cam->q[0], cam->q[1], cam->q[2], cam->q[3]);
+    // vset(cam->q, 1.0, 0.0, 0.0, 0.0);
+    console_log(Debug, "Make cube\n");
     Mesh *cube = make_cube(color);
     console_log(Debug, "Transform\n");
     transform(cam, cube);

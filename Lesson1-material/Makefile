@@ -48,8 +48,8 @@ main.o:
 buffer: utility.o vector.o quaternion.o point.o buffer.o mesh.o camera.o main.o
 	gcc -o bin/buffer bin/main.o bin/utility.o bin/buffer.o bin/point.o bin/vector.o bin/quaternion.o bin/mesh.o bin/camera.o -framework OpenGL -framework GLUT
 
-vtest: vector.o utility.o quaternion.o
-	gcc test/vector_test.c -o test/bin/vtest bin/vector.o bin/utility.o bin/quaternion.o
+vtest: utility.o buffer.o vector.o quaternion.o point.o mesh.o camera.o
+	gcc test/vector_test.c -o test/bin/vtest bin/utility.o bin/point.o bin/buffer.o bin/vector.o bin/quaternion.o bin/camera.o -framework OpenGL -framework GLUT
 
 clean:
 	-rm *.o $(objects)

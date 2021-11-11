@@ -5,7 +5,7 @@
 
 #define PI 3.141592653589
 
-int print_logs = 0;
+Log_Level print_logs = 0;
 
 void testRotate(float v[4], float angle) {
     float axis[4] = {0.0, 0.0, 1.0, 0.0};

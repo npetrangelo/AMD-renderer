@@ -40,7 +40,7 @@ int window_size = 800;
 int Mojave_WorkAround = 0;
 int draw_one_frame = 1;
 int global_index;
-int print_logs = 0;
+Log_Level print_logs = Info;
 
 /*
  * set_color()
@@ -97,11 +97,11 @@ void draw_cube(float color[4]) {
     qrotate(cam->q, axis, PI/8, cam->q);
     console_log("Make cube\n");
     Mesh *cube = make_cube(color);
-    console_log("Transform\n");
+    console_log(Debug, "Transform\n");
     transform(cam, cube);
-    console_log("Project\n");
+    console_log(Debug, "Project\n");
     project(cam, cube);
-    console_log("Wireframe\n");
+    console_log(Debug, "Wireframe\n");
     wireframe(cam, cube);
 }
 

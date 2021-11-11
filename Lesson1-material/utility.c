@@ -5,8 +5,8 @@
 #include <math.h>
 #include "utility.h"
 
-void console_log(char *format, ...) {
-    if (print_logs) {
+void console_log(Log_Level log_level, char *format, ...) {
+    if (log_level >= print_logs) {
         va_list args;
         va_start(args, format);
         vprintf(format, args);

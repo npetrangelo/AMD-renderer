@@ -11,3 +11,6 @@ float random_int( int low, int high );
 float randomGL( int m );
 double sign( double a );
 double dabs( double a );
+int signum(float x);
+float half_angle_cos(float cosx);
+float half_angle_sin(float cosx, float sinx);

@@ -64,3 +64,21 @@ double dabs( double a )
     }
     return( a );
 }
+
+int signum(float x) {
+    return (x > 0.0) - (x < 0.0);
+}
+
+/**
+ * Valid between -pi and pi radians
+ */
+float half_angle_cos(float cosx) {
+    return sqrt((1+cosx)/2.0);
+}
+
+/**
+ * Valid between -pi and pi radians
+ */
+float half_angle_sin(float cosx, float sinx) {
+    return copysignf(sqrt((1-cosx)/2.0), sinx);
+}

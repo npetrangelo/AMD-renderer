@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 #include "vector.h"
 #include "quaternion.h"
 #include "point.h"
@@ -13,6 +14,23 @@ Camera* make_camera(float zoom, float pos[4]) {
     vcopy(pos, cam->pos);
     vset(cam->q, 1.0, 0.0, 0.0, 0.0);
     return cam;
+}
+
+void look_at(Camera *cam, float target[4]) { // Still weird
+    float dir[4];
+    vsub(target, cam->pos, dir);
+    console_log(Info, "Looking (%f, %f, %f)\n", dir[0], dir[1], dir[2]);
+    norm(dir, dir);
+    // Reset to no rotation
+    vset(cam->q, 1.0, 0.0, 0.0, 0.0);
+    // TODO: Use half angle formulas
+    // cos(theta) = x, use cos(theta/2) instead
+    float cosp = sqrt(dir[0]*dir[0] + dir[2]*dir[2]);
+    float pitch[4] = {half_angle_cos(cosp), half_angle_sin(cosp, dir[1]), 0.0, 0.0};
+    float yaw[4] = {-half_angle_cos(-dir[2]), 0.0, half_angle_sin(-dir[2], dir[0]), 0.0};
+    qmult(pitch, cam->q, cam->q);
+    qmult(yaw, cam->q, cam->q);
+    console_log(Info, "Look at: cam->q=[%f, %f, %f, %f]\n", cam->q[0], cam->q[1], cam->q[2], cam->q[3]);
 }
 
 void transform(Camera *cam, Mesh *m) {

@@ -84,10 +84,10 @@ void wireframe(Camera *cam, Mesh *m) {
 }
 
 void render(Camera *cam, Mesh *m) {
-    console_log(Debug, "Transform\n");
+    console_log(Info, "Transform\n");
     transform(cam, m);
-    console_log(Debug, "Project\n");
+    console_log(Info, "Project\n");
     project(cam, m);
-    console_log(Debug, "Wireframe\n");
+    console_log(Info, "Wireframe\n");
     wireframe(cam, m);
 }

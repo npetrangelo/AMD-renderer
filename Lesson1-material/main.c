@@ -90,16 +90,11 @@ void draw_cube(float color[4]) {
     // qrotate(cam->q, axis, PI/8, cam->q);
     float origin[4] = {0.0, 0.0, 0.0, 0.0};
     look_at(cam, origin);
-    console_log(Info, "Main: cam->q=[%f, %f, %f, %f]\n", cam->q[0], cam->q[1], cam->q[2], cam->q[3]);
+    console_log(Debug, "Main: cam->q=[%f, %f, %f, %f]\n", cam->q[0], cam->q[1], cam->q[2], cam->q[3]);
     // vset(cam->q, 1.0, 0.0, 0.0, 0.0);
     console_log(Debug, "Make cube\n");
     Mesh *cube = make_cube(color);
-    console_log(Debug, "Transform\n");
-    transform(cam, cube);
-    console_log(Debug, "Project\n");
-    project(cam, cube);
-    console_log(Debug, "Wireframe\n");
-    wireframe(cam, cube);
+    render(cam, cube);
 }
 
 /*************************************************************************/

@@ -16,3 +16,4 @@ void transform(Camera *cam, Mesh *m);
 void project(Camera *cam, Mesh *m);
 void ortho(Camera *cam, Mesh *m);
 void wireframe(Camera *cam, Mesh *m);
+void render(Camera *cam, Mesh *m);

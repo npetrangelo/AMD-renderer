@@ -19,7 +19,7 @@ Camera* make_camera(float zoom, float pos[4]) {
 void look_at(Camera *cam, float target[4]) { // Still weird
     float dir[4];
     vsub(target, cam->pos, dir);
-    console_log(Info, "Looking (%f, %f, %f)\n", dir[0], dir[1], dir[2]);
+    console_log(Debug, "Looking (%f, %f, %f)\n", dir[0], dir[1], dir[2]);
     norm(dir, dir);
     // Reset to no rotation
     vset(cam->q, 1.0, 0.0, 0.0, 0.0);
@@ -30,14 +30,17 @@ void look_at(Camera *cam, float target[4]) { // Still weird
     float yaw[4] = {-half_angle_cos(-dir[2]), 0.0, half_angle_sin(-dir[2], dir[0]), 0.0};
     qmult(pitch, cam->q, cam->q);
     qmult(yaw, cam->q, cam->q);
-    console_log(Info, "Look at: cam->q=[%f, %f, %f, %f]\n", cam->q[0], cam->q[1], cam->q[2], cam->q[3]);
+    console_log(Debug, "Look at: cam->q=[%f, %f, %f, %f]\n", cam->q[0], cam->q[1], cam->q[2], cam->q[3]);
 }
 
 void transform(Camera *cam, Mesh *m) {
     float temp[4];
     float conjq[4];
+    console_log(Debug, "Transform: Conjugate\n");
     qconjugate(cam->q, conjq);
+    console_log(Debug, "Transform: Loop\n");
     for (int i = 0; i < m->num_points; i++) {
+        console_log(Debug, "Transform: In loop i=%d\n", i);
         temp[0] = m->points[i].world[0] - cam->pos[0];
         temp[1] = m->points[i].world[1] - cam->pos[1];
         temp[2] = m->points[i].world[2] - cam->pos[2];
@@ -78,4 +81,13 @@ void wireframe(Camera *cam, Mesh *m) {
         console_log(Debug, "Draw triangle %d\n", i);
         draw_n_lines(pts, 3, 1);
     }
+}
+
+void render(Camera *cam, Mesh *m) {
+    console_log(Debug, "Transform\n");
+    transform(cam, m);
+    console_log(Debug, "Project\n");
+    project(cam, m);
+    console_log(Debug, "Wireframe\n");
+    wireframe(cam, m);
 }

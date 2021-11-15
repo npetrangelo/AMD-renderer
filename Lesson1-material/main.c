@@ -33,7 +33,7 @@
 int window_size = 800;
 int Mojave_WorkAround = 0;
 int draw_one_frame = 1;
-Log_Level print_logs = Debug;
+Log_Level print_logs = Info;
 
 /*
  * set_color()
@@ -102,7 +102,7 @@ void draw_torus(float color[4]) {
     Camera *cam = make_camera(500.0, pos);
     float origin[4] = {0.0, 0.0, 0.0, 0.0};
     look_at(cam, origin);
-    console_log(Debug, "Make torus\n");
+    console_log(Info, "Make torus\n");
     Mesh *torus = make_torus(color, 3.0, 1.0, 10, 10);
     render(cam, torus);
 }

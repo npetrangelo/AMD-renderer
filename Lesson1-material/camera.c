@@ -23,11 +23,13 @@ void look_at(Camera *cam, float target[4]) { // Still weird
     norm(dir, dir);
     // Reset to no rotation
     vset(cam->q, 1.0, 0.0, 0.0, 0.0);
-    // TODO: Use half angle formulas
-    // cos(theta) = x, use cos(theta/2) instead
+    // Normalize yaw vector without y component
+    float yawVec[4] = {dir[0], 0.0, dir[2], 0.0};
+    norm(yawVec, yawVec);
     float cosp = sqrt(dir[0]*dir[0] + dir[2]*dir[2]);
+    // Half angle formulas because quaternions work with half angles
     float pitch[4] = {half_angle_cos(cosp), half_angle_sin(cosp, dir[1]), 0.0, 0.0};
-    float yaw[4] = {-half_angle_cos(-dir[2]), 0.0, half_angle_sin(-dir[2], dir[0]), 0.0};
+    float yaw[4] = {-half_angle_cos(-yawVec[2]), 0.0, half_angle_sin(-yawVec[2], yawVec[0]), 0.0};
     qmult(pitch, cam->q, cam->q);
     qmult(yaw, cam->q, cam->q);
     console_log(Debug, "Look at: cam->q=[%f, %f, %f, %f]\n", cam->q[0], cam->q[1], cam->q[2], cam->q[3]);

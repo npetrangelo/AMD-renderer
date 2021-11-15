@@ -1,5 +1,10 @@
 #pragma once
 
+#define repeat(x) for( global_index = 0; global_index < (int)(x); global_index++ )
+#define PI 3.141592653589
+
+int global_index;
+
 typedef enum {Debug=0, Info=1, Warn=2, Error=3, Fatal=4} Log_Level;
 extern Log_Level print_logs;
 

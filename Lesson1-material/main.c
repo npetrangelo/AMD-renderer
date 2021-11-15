@@ -28,19 +28,12 @@
 #include "quaternion.h"
 
 /*************************************************************************/
-/* defines                                                               */
-/*************************************************************************/
-#define repeat(x)       for( global_index = 0; global_index < (int)(x); global_index++ )
-#define PI 3.141592653589
-
-/*************************************************************************/
 /* global variables                                                      */
 /*************************************************************************/
 int window_size = 800;
 int Mojave_WorkAround = 0;
 int draw_one_frame = 1;
-int global_index;
-Log_Level print_logs = Info;
+Log_Level print_logs = Debug;
 
 /*
  * set_color()

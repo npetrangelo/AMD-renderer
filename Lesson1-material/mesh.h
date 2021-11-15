@@ -20,3 +20,5 @@ int add_quad(Mesh *m, int p0, int p1, int p2, int p3);
 
 Mesh* make_plane(float color[4]);
 Mesh* make_cube(float color[4]);
+
+Mesh* make_torus(float color[4], float R, float r, int toroidal, int poloidal);

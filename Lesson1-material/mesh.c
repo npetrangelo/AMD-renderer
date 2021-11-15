@@ -52,6 +52,12 @@ int add_triangle(Mesh *m, int p0, int p1, int p2) {
     return 1;
 }
 
+int add_quad(Mesh *m, int p0, int p1, int p2, int p3) {
+    add_triangle(m, p0, p1, p2);
+    add_triangle(m, p1, p2, p3);
+    return 1;
+}
+
 Mesh* make_plane(float color[4]) {
     Mesh *m = make_mesh(4, 2);
 
@@ -80,23 +86,17 @@ Mesh* make_cube(float color[4]) {
 
     console_log(Debug, "Adding triangles\n");
     // Front
-    add_triangle(m, 0, 1, 2);
-    add_triangle(m, 1, 2, 3);
+    add_quad(m, 0, 1, 2, 3);
     // Left
-    add_triangle(m, 0, 2, 4);
-    add_triangle(m, 2, 4, 6);
+    add_quad(m, 0, 2, 4, 6);
     // Right
-    add_triangle(m, 1, 3, 5);
-    add_triangle(m, 3, 5, 7);
+    add_quad(m, 1, 3, 5, 7);
     // Bottom
-    add_triangle(m, 0, 1, 4);
-    add_triangle(m, 1, 4, 5);
+    add_quad(m, 0, 1, 4, 5);
     // Top
-    add_triangle(m, 2, 3, 6);
-    add_triangle(m, 3, 6, 7);
+    add_quad(m, 2, 3, 6, 7);
     // Back
-    add_triangle(m, 4, 5, 6);
-    add_triangle(m, 5, 6, 7);
+    add_quad(m, 4, 5, 6, 7);
 
     return m;
 }

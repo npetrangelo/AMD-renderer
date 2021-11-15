@@ -14,6 +14,7 @@ void free_mesh(Mesh *m);
 Mesh* make_mesh(int num_points, int num_tris);
 int add_point(Mesh *m, Point *p);
 int add_triangle(Mesh *m, int p0, int p1, int p2);
+int add_quad(Mesh *m, int p0, int p1, int p2, int p3);
 
 // Geometric Primitives
 

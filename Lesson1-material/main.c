@@ -98,12 +98,12 @@ void draw_cube(float color[4]) {
 }
 
 void draw_torus(float color[4]) {
-    float pos[4] = {0.0, 10.0, 15.0, 0.0};
+    float pos[4] = {0.0, 5.0, 10.0, 0.0};
     Camera *cam = make_camera(500.0, pos);
     float origin[4] = {0.0, 0.0, 0.0, 0.0};
     look_at(cam, origin);
     console_log(Info, "Make torus\n");
-    Mesh *torus = make_torus(color, 3.0, 1.0, 10, 10);
+    Mesh *torus = make_torus(color, 3.0, 1.0, 6, 10);
     render(cam, torus);
 }
 

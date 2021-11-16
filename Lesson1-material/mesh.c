@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+#include "vector.h"
 #include "point.h"
 #include "utility.h"
 #include "mesh.h"
@@ -106,16 +107,19 @@ Mesh* make_torus(float color[4], float R, float r, int toroidal, int poloidal) {
     console_log(Debug, "Making torus\n");
     Mesh *m = make_mesh(toroidal*poloidal, 2*toroidal*poloidal);
 
+    float world[4] = {0.0};
+    float theta, phi;
+    int p0, p1, p2, p3;
     for (int t = 0; t < toroidal; t++) {
         for (int p = 0; p < poloidal; p++) {
-            float theta = 2.0*PI*t/toroidal;
-            float phi = 2.0*PI*p/poloidal;
-            float world[4] = {(R + r*cos(theta))*cos(phi), r*sin(theta), (R + r*cos(theta))*sin(phi), 0.0};
+            theta = 2.0*PI*t/toroidal;
+            phi = 2.0*PI*p/poloidal;
+            vset(world, (R + r*cos(theta))*cos(phi), r*sin(theta), (R + r*cos(theta))*sin(phi), 0.0);
             add_point(m, make_vertex(world, color));
-            int p0 = p + poloidal*t;
-            int p1 = (p + 1) % poloidal + poloidal*t;
-            int p2 = p + poloidal*((t + 1) % toroidal);
-            int p3 = (p + 1) % poloidal + poloidal*((t + 1) % toroidal);
+            p0 = p + poloidal*t;
+            p1 = (p + 1) % poloidal + poloidal*t;
+            p2 = p + poloidal*((t + 1) % toroidal);
+            p3 = (p + 1) % poloidal + poloidal*((t + 1) % toroidal);
             add_quad(m, p0, p1, p2, p3);
         }
     }

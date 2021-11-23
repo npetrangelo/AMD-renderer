@@ -36,6 +36,7 @@ void look_at(Camera *cam, float target[4]) { // Still weird
 }
 
 void transform(Camera *cam, Mesh *m) {
+    console_log(Info, "Transform\n");
     float temp[4];
     float conjq[4];
     console_log(Debug, "Transform: Conjugate\n");
@@ -53,6 +54,7 @@ void transform(Camera *cam, Mesh *m) {
 }
 
 void project(Camera *cam, Mesh *m) {
+    console_log(Info, "Project\n");
     console_log(Debug, "Num points projected %d\n", m->num_points);
     for (int i = 0; i < m->num_points; i++) {
         console_log(Debug, "Cam z %f\n", m->points[i].cam[2]);
@@ -73,6 +75,7 @@ void ortho(Camera *cam, Mesh *m) {
 }
 
 void wireframe(Camera *cam, Mesh *m) {
+    console_log(Info, "Wireframe\n");
     int (*tris)[3] = (int (*)[3])(m->triangles);
     Point *pts[3];
     for (int i = 0; i < m->num_tris; i++) {
@@ -85,11 +88,23 @@ void wireframe(Camera *cam, Mesh *m) {
     }
 }
 
+void draw_fill(Camera *cam, Mesh *m) {
+    console_log(Info, "Fill\n");
+    int (*tris)[3] = (int (*)[3])(m->triangles);
+    Point *pts[3];
+    for (int i = 0; i < m->num_tris; i++) {
+        console_log(Debug, "Get points for triangle %d\n", i);
+        pts[0] = &(m->points[tris[i][0]]);
+        pts[1] = &(m->points[tris[i][1]]);
+        pts[2] = &(m->points[tris[i][2]]);
+        console_log(Debug, "Draw triangle %d\n", i);
+        fill_triangle(pts[0], pts[1], pts[2]);
+    }
+}
+
 void render(Camera *cam, Mesh *m) {
-    console_log(Info, "Transform\n");
     transform(cam, m);
-    console_log(Info, "Project\n");
     project(cam, m);
-    console_log(Info, "Wireframe\n");
-    wireframe(cam, m);
+    // wireframe(cam, m);
+    draw_fill(cam, m);
 }

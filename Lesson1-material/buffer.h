@@ -12,4 +12,6 @@ void draw_line( Point* p0, Point* p1 );
 void draw_n_lines(Point* points[], int n, int closed);
 void draw_border(float color[4]);
 
+void fill_triangle(Point* p0, Point* p1, Point* p2);
+
 void render_to_screen( void );

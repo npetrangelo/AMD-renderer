@@ -67,6 +67,41 @@ void draw_border(float color[4]) {
     draw_n_lines(points, 4, 1);
 }
 
+void fill_triangle(Point* p0, Point* p1, Point* p2) {
+    int minX = (int) fminf(p0->screen[0], fminf(p1->screen[0], p2->screen[0]));
+    int maxX = (int) (fmaxf(p0->screen[0], fmaxf(p1->screen[0], p2->screen[0]))) + 1;
+    int minY = (int) fminf(p0->screen[1], fminf(p1->screen[1], p2->screen[1]));
+    int maxY = (int) (fmaxf(p0->screen[1], fmaxf(p1->screen[1], p2->screen[1]))) + 1;
+
+    float e10[4], e12[4], normal[4];
+    vsub(p0->screen, p1->screen, e10);
+    vsub(p2->screen, p1->screen, e12);
+    vcross(e12, e10, normal);
+    norm(normal, normal);
+
+    float d0[4], d1[4], d2[4], color[4];
+    for (int x = minX; x <= maxX; x++) {
+        for (int y = minY; y <= maxY; y++) {
+            // Barycentric coordinates
+            float px[4] = {x, y, -1.0, 0.0};
+            vsub(p0->screen, px, d0);
+            vsub(p1->screen, px, d1);
+            vsub(p2->screen, px, d2);
+
+            float bary_coord[4] = {area(d0, d1, normal), area(d1, d2, normal), area(d2, d0, normal), 0.0};
+            norm(bary_coord, bary_coord);
+
+            if (bary_coord[0] < 0.0 || bary_coord[1] < 0.0 || bary_coord[2] < 0.0) {
+                console_log(Debug, "bary=[%f %f %f]\n", bary_coord[0], bary_coord[1], bary_coord[2]);
+                continue;
+            }
+
+            bary(p0->color, p1->color, p2->color, bary_coord, color);
+            draw_pixel(x, y, color);
+        }
+    }
+}
+
 void render_to_screen( void ) {
     glDrawPixels(SCREEN_WIDTH+1, SCREEN_HEIGHT+1, GL_RGBA, GL_FLOAT, buffer);
 }

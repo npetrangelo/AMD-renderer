@@ -146,7 +146,7 @@ void display(void)
     glClear(GL_COLOR_BUFFER_BIT );
 
     float color[4] = {1.0, 1.0, 0.0, 1.0};
-    draw_plane(color);
+    draw_torus(color);
     
     render_to_screen();
     

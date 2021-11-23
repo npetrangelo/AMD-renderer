@@ -63,16 +63,14 @@ int add_quad(Mesh *m, int p0, int p1, int p2, int p3) {
 Mesh* make_plane(float color[4]) {
     Mesh *m = make_mesh(4, 2);
 
-    for (float y = 0.0; y < 2.0; y++) {
-        for (float x = 0.0; x < 2.0; x++) {
-            float world[4] = {x, y, 0.0, 0.0};
+    for (float z = -1.0; z < 1.0; z++) {
+        for (float x = -1.0; x < 1.0; x++) {
+            float world[4] = {x, 0.0, z, 0.0};
             add_point(m, make_vertex(world, color));
         }
     }
 
-    add_triangle(m, 0, 1, 2);
-    add_triangle(m, 1, 2, 3);
-
+    add_quad(m, 0, 1, 2, 3);
     return m;
 }
 

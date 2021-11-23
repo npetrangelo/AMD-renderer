@@ -14,3 +14,5 @@ int vrotate(float v[4], float q[4], float result[4]);
 int vcross(float v0[4], float v1[4], float result[4]);
 float dot(float v0[4], float v1[4]);
 float mag(float v[4]);
+float area(float v0[4], float v1[4], float normal[4]);
+int bary(float v0[4], float v1[4], float v2[4], float bary[4], float result[4]);

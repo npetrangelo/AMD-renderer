@@ -97,3 +97,21 @@ float dot(float v0[4], float v1[4]) {
 float mag(float v[4]) {
     return sqrt(dot(v, v));
 }
+
+float area(float v0[4], float v1[4], float normal[4]) {
+    float area[4];
+    vcross(v0, v1, area);
+    int sign = signum(dot(area, normal));
+    return sign * mag(area);
+}
+
+int bary(float v0[4], float v1[4], float v2[4], float bary[4], float result[4]) {
+    console_log(Debug, "bary=[%f %f %f]\n", bary[0], bary[1], bary[2]);
+    float scaled[4];
+    vscale(v0, bary[0], result);
+    vscale(v1, bary[1], scaled);
+    vadd(result, scaled, result);
+    vscale(v2, bary[2], scaled);
+    vadd(result, scaled, result);
+    return 1;
+}

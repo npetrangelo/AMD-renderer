@@ -14,6 +14,7 @@ Point* make_point(float screen[4], float color[4]) {
 Point* make_vertex(float world[4], float color[4]) {
     Point *p = malloc(sizeof(Point));
     vcopy(world, p->world);
+    vcopy(world, p->cam);
     vcopy(color, p->color);
     return p;
 }

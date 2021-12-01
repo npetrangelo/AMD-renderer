@@ -37,6 +37,12 @@ void look_at(Camera *cam, float target[4]) { // Still weird
 
 void transform(Camera *cam, Mesh *m) {
     console_log(Info, "Transform\n");
+
+    for (int i = 0; i < 4; i++) {
+        m->min[i] = FLT_MAX;
+        m->max[i] = FLT_MIN;
+    }
+
     float temp[4];
     float conjq[4];
     console_log(Debug, "Transform: Conjugate\n");
@@ -50,6 +56,11 @@ void transform(Camera *cam, Mesh *m) {
         temp[3] = 0.0;
 
         vrotate(temp, conjq, m->points[i].cam);
+
+        for (int i = 0; i < 4; i++) {
+            m->min[i] = fminf(m->points[i].cam[i], m->min[i]);
+            m->max[i] = fmaxf(m->points[i].cam[i], m->max[i]);
+        }
     } 
 }
 

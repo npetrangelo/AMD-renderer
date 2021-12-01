@@ -22,6 +22,10 @@ float flerp(float a, float b, float t)
     return a*(1.0-t) + b*t;
 }
 
+float flerp_inv(float a, float b, float x) {
+    return (a - x) / (a - b);
+}
+
 /*
  * random_float()
  */

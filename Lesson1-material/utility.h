@@ -11,6 +11,7 @@ extern Log_Level print_logs;
 void console_log(Log_Level log_level, char *format, ...);
 
 float flerp(float a, float b, float t);
+float flerp_inv(float a, float b, float x);
 float random_float( float low, float high );
 float random_int( int low, int high );
 float randomGL( int m );

@@ -103,6 +103,7 @@ void draw_fill(Camera *cam, Mesh *m) {
 }
 
 void render(Camera *cam, Mesh *m) {
+    init_zbuffer();
     transform(cam, m);
     project(cam, m);
     // wireframe(cam, m);

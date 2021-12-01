@@ -9,7 +9,16 @@
 #include "utility.h"
 #include "buffer.h"
 
-float buffer[SCREEN_WIDTH+1][SCREEN_HEIGHT+1][4] = {0};
+float buffer[SCREEN_WIDTH+1][SCREEN_HEIGHT+1][4] = {0.0};
+float zbuffer[SCREEN_WIDTH+1][SCREEN_HEIGHT+1] = {0.0};
+
+void init_zbuffer() {
+    for (int j = 0; j <= SCREEN_WIDTH; j++) {
+        for (int i = 0; i <= SCREEN_HEIGHT; i++) {
+            zbuffer[j][i] = 1.0;
+        }
+    }
+}
 
 void draw_pixel( float x, float y, float color[4] ) {
     int i = (int)(x) + SCREEN_WIDTH/2;
@@ -18,6 +27,12 @@ void draw_pixel( float x, float y, float color[4] ) {
         return;
     }
     vcopy(color, buffer[j][i]);
+}
+
+void draw_z( float x, float y, float depth ) {
+    int i = (int)(x) + SCREEN_WIDTH/2;
+    int j = (int)(y) + SCREEN_HEIGHT/2;
+    zbuffer[j][i] = fminf(zbuffer[j][i], depth);
 }
 
 void draw_point( Point* p ) {
@@ -104,4 +119,11 @@ void fill_triangle(Point* p0, Point* p1, Point* p2) {
 
 void render_to_screen( void ) {
     glDrawPixels(SCREEN_WIDTH+1, SCREEN_HEIGHT+1, GL_RGBA, GL_FLOAT, buffer);
+}
+
+void render_zbuffer( void ) {
+    console_log(Info, "Zbuffer first pixel %f\n", zbuffer[0][0]);
+    console_log(Info, "Zbuffer middle pixel %f\n", zbuffer[0][1]);
+
+    glDrawPixels(SCREEN_WIDTH+1, SCREEN_HEIGHT+1, GL_LUMINANCE, GL_FLOAT, zbuffer);
 }

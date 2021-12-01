@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+#include <float.h>
 #include "vector.h"
 #include "point.h"
 #include "utility.h"
@@ -28,6 +29,11 @@ Mesh* make_mesh(int len_points, int len_tris) {
     for (int i = 0; i < (3*len_tris); i++) {
         m->triangles[i] = 0;
     }
+
+    for (int i = 0; i < 4; i++) {
+        m->min[i] = FLT_MAX;
+        m->max[i] = FLT_MIN;
+    }
     return m;
 }
 
@@ -36,6 +42,12 @@ int add_point(Mesh *m, Point *p) {
         printf("Cannot add more points to mesh\n");
         return 0;
     }
+
+    for (int i = 0; i < 4; i++) {
+        m->min[i] = fminf(p->world[i], m->min[i]);
+        m->max[i] = fmaxf(p->world[i], m->max[i]);
+    }
+
     // printf("Adding point x=%f y=%f z=%f\n", p->world[0], p->world[1], p->world[2]);
     m->points[m->num_points++] = *p;
     return 1;

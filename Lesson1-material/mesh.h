@@ -2,6 +2,8 @@
 #pragma once
 
 typedef struct {
+    float min[4];
+    float max[4];
     int len_points;
     int num_points;
     int len_tris;

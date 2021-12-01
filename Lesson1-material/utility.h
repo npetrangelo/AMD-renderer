@@ -2,6 +2,8 @@
 
 #define repeat(x) for( global_index = 0; global_index < (int)(x); global_index++ )
 #define PI 3.141592653589
+#define FLT_MIN 1E-37
+#define FLT_MAX 1E+37
 
 int global_index;
 

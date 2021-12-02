@@ -83,10 +83,10 @@ void draw_border(float color[4]) {
 }
 
 void fill_triangle(Point* p0, Point* p1, Point* p2) {
-    int minX = (int) fminf(p0->screen[0], fminf(p1->screen[0], p2->screen[0]));
-    int maxX = (int) (fmaxf(p0->screen[0], fmaxf(p1->screen[0], p2->screen[0]))) + 1;
-    int minY = (int) fminf(p0->screen[1], fminf(p1->screen[1], p2->screen[1]));
-    int maxY = (int) (fmaxf(p0->screen[1], fmaxf(p1->screen[1], p2->screen[1]))) + 1;
+    int minX = (int) fmaxf(-400.0, fminf(p0->screen[0], fminf(p1->screen[0], p2->screen[0])));
+    int maxX = (int) fminf(400.0, (fmaxf(p0->screen[0], fmaxf(p1->screen[0], p2->screen[0]))) + 1);
+    int minY = (int) fmaxf(-400.0, fminf(p0->screen[1], fminf(p1->screen[1], p2->screen[1])));
+    int maxY = (int) fminf(400.0, (fmaxf(p0->screen[1], fmaxf(p1->screen[1], p2->screen[1]))) + 1);
 
     float e10[4], e12[4], normal[4];
     vsub(p0->screen, p1->screen, e10);

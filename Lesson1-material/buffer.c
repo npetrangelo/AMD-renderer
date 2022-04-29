@@ -112,6 +112,7 @@ void fill_triangle(Point* p0, Point* p1, Point* p2) {
             }
 
             bary(p0->color, p1->color, p2->color, bary_coord, color);
+            // if z < zbuffer[x][y], draw and zbuffer[x][y] = z
             draw_pixel(x, y, color);
         }
     }

@@ -5,6 +5,7 @@ typedef struct {
     float color[4];
     float world[4];
     float cam[4];
+    float st[4];
 } Point;
 
 // Create and destroy points.

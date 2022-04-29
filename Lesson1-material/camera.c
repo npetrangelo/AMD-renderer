@@ -71,7 +71,7 @@ void project(Camera *cam, Mesh *m) {
         console_log(Debug, "Cam z %f\n", m->points[i].cam[2]);
         m->points[i].screen[0] = cam->zoom * m->points[i].cam[0] / -m->points[i].cam[2];
         m->points[i].screen[1] = cam->zoom * m->points[i].cam[1] / -m->points[i].cam[2];
-        m->points[i].screen[2] = m->points[i].cam[2];
+        m->points[i].screen[2] = flerp_inv(m->min[2], m->max[2], m->points[i].cam[2]);
         m->points[i].screen[3] = 0.0;
     }
 }
@@ -80,7 +80,7 @@ void ortho(Camera *cam, Mesh *m) {
     for (int i = 0; i < m->num_points; i++) {
         m->points[i].screen[0] = cam->zoom * m->points[i].cam[0];
         m->points[i].screen[1] = cam->zoom * m->points[i].cam[1];
-        m->points[i].screen[2] = m->points[i].cam[2];
+        m->points[i].screen[2] = flerp_inv(m->min[2], m->max[2], m->points[i].cam[2]);
         m->points[i].screen[3] = 0.0;
     }
 }

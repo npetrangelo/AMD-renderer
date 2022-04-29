@@ -148,7 +148,7 @@ void display(void)
     float color[4] = {1.0, 1.0, 0.0, 1.0};
     draw_torus(color);
     
-    render_zbuffer();
+    render_to_screen();
     
     /*
      * show results

@@ -71,6 +71,7 @@ gradedStructure* gmult(gradedStructure* g1, gradedStructure* g2) {
 
     for (unsigned int i = 0; i < len(g1); i++) {
         for (unsigned int j = 0; j < len(g2); j++) {
+            // Use existing map element if exists, else generate it
             g[(i)^(j)] += g1[i]*g2[j] * map[i][j];
         }
     }
